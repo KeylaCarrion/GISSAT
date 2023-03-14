@@ -63,4 +63,3 @@ for node_name in wn.node_name_list:
 
 
 
-print(wn.junction_name_list)
