@@ -1,0 +1,624 @@
+; Filename: C:\Users\RI\Downloads\EPANET-dev\example-networks\N6.inp
+; WNTR: 0.5.0
+; Created: 2023-03-10 11:42:28
+[TITLE]
+
+[JUNCTIONS]
+;ID                      Elevation       Demand Pattern                 
+ 24                                 0               0                            ;
+ 25                                 0               0                            ;
+ 26                                 0               0                            ;
+ 29                                 0               0                            ;
+ 30                                 0               0                            ;
+ 31                                 0               0                            ;
+ VistaHermosa                       0               0                            ;
+ VillaFlorida                       0               0                            ;
+ 32                                 0               0                            ;
+ VillasDelRoble                     0               0                            ;
+ GranjasNorte                       0               0                            ;
+ 33                                 0               0                            ;
+ 34                                 0               0                            ;
+ LomaReal                           0               0                            ;
+ Fresnos                            0               0                            ;
+ 35                                 0               0                            ;
+ 36                                 0               0                            ;
+ LomaBonita                         0               0                            ;
+ Ventura                            0               0                            ;
+ ColinasDeLomaReal                  0               0                            ;
+ 37                                 0               0                            ;
+ Halcones                           0               0                            ;
+ Arcos                              0               0                            ;
+ 40                                 0               0                            ;
+ JarachinaSur                       0               0                            ;
+ 42                                 0               0                            ;
+ 43                                 0               0                            ;
+ 44                                 0               0                            ;
+ Bugambilias                        0               0                            ;
+ 45                                 0               0                            ;
+ 46                                 0               0                            ;
+ NuevoMexico                        0               0                            ;
+ 47                                10               0                            ;
+ PuertaSur                         10               0                            ;
+ MexicoItavu                       10               0                            ;
+ AmpSanValentin                     0               0                            ;
+ 48                                 0               0                            ;
+ SanValentin                        0               0                            ;
+ 49                                 0               0                            ;
+ PuertaDelSol                       0               0                            ;
+ 50                                 0               0                            ;
+ VistaAlta                          0               0                            ;
+ HcdDelSol                          0               0                            ;
+ 1                                  0               0                            ;
+ 2                                  0               0                            ;
+ 4                                  0               0                            ;
+ 5                                  0               0                            ;
+ 6                                  0               0                            ;
+ 7                                  0               0                            ;
+ 3                                  0          1766.3                            ;
+
+[RESERVOIRS]
+;ID                                   Head                  Pattern
+ PozoVillasDelRoble                 0                            ;
+ PozoFresnos                        0                            ;
+ PozoNuevoMexico1                   0                            ;
+ PozoNuevoMexico2                   0                            ;
+ PozoPuertaSur                      0                            ;
+ PozoAmpSanValentin                 0                            ;
+ PozoSanValentin                    0                            ;
+ PozoPuertaDelSol                   0                            ;
+ PozoHcdDelSol                      0                            ;
+ Anzalduzas                         0                            ;
+
+[TANKS]
+;ID                              Elevation           Init Level            Min Level            Max Level             Diameter           Min Volume Volume Curve         Overflow            
+ RebombeoPastorLozano3               0              10               0              20           10000               0                                             ;
+ RebombeoJarachina1                 0              10               0              20              50               0                                             ;
+ RebombeoPastorLozano4               0              10               0              20           10000               0                                             ;
+ RebombeoGranjas3                   0              10               0              20              50               0                                             ;
+ RebombeoGranjas2                   0              10               0              20              50               0                                             ;
+ RebombeoGranjas1                   0              10               0              20              50               0                                             ;
+ Jarachina2                         0              10               0              20              50               0                                             ;
+ CisternaVistaHermosa               0              10               0              20              50               0                                             ;
+ CisternaVillaFlorida2               0              10               0              20              50               0                                             ;
+ CisternaVillaFlorida1               0              10               0              20              50               0                                             ;
+ TanqueElevadoVistaHermosa               0              10               0              20              50               0                                             ;
+ TanqueElevadoVillaFlorida               0              10               0              20              50               0                                             ;
+ CisternaLomaReal                   0              10               0              20              50               0                                             ;
+ CisternaFresnos                    0              10               0              20              50               0                                             ;
+ CisternaLomaBonita                 0              10               0              20              50               0                                             ;
+ TanqueElevadoLomaBonita               0              10               0              20              50               0                                             ;
+ CisternaVentura                    0              10               0              20              50               0                                             ;
+ CisternaColinasDeLomaReal               0              10               0              20              50               0                                             ;
+ TanqueElevadoColinasDeLomaReal               0              10               0              20              50               0                                             ;
+ TanqueElevadoBugambilias1              10              20               0              20              50               0                                             ;
+ CisternaBugambilias1              10              10               0              10              50               0                                             ;
+ CisternaBugambilias2              10              10               0              10              50               0                                             ;
+ TanqueElevadoBugambilias2              10              20               0              20              50               0                                             ;
+ CisternaBugambilias3              10              10               0              10              50               0                                             ;
+ TanqueElevadoBugambilias3              10              20               0              20              50               0                                             ;
+ CisternaHalcones                   0              10               0              20              50               0                                             ;
+ RebombeoNuevoMexico                0              10               0              20              50               0                                             ;
+ CisertaPuertaSur                   0              10               0              20              50               0                                             ;
+ TanqueElevadoPuertaSur               0              10               0              20              50               0                                             ;
+ CisternaMexicoItavu                0              10               0              20              50               0                                             ;
+ TanqueElevadoMexicoItavu               0              10               0              20              50               0                                             ;
+ RebombeoAmpSanValentin               0              10               0              20              50               0                                             ;
+ CisternaSanValentin                0              10               0              20              50               0                                             ;
+ CisternaPuertaDelSol2               0              10               0              20              50               0                                             ;
+ CisternaPuertaDelSol1               0              10               0              20              50               0                                             ;
+ TanqueElevadoPuertaDelSol1               0              10               0              20              50               0                                             ;
+ TanqueElevadoPuertaDelSol2               0              10               0              20              50               0                                             ;
+ CistermaVistaAlta                  0              10               0              20              50               0                                             ;
+ CisternaHcdDelSol                  0              10               0              20              50               0                                             ;
+
+[PIPES]
+;ID                   Node1                Node2                              Length             Diameter            Roughness           Minor Loss               Status
+ 1                    1                    RebombeoJarachina1              1000             100           1e-09               0                 Open   ;
+ 2                    2                    24                              1000             100           1e-09               0                 Open   ;
+ 3                    24                   Jarachina2                      1000             100           1e-09               0                 Open   ;
+ 4                    Jarachina2           RebombeoJarachina1              1000             100           1e-09               0                 Open   ;
+ 6                    25                   2                               1000             100           1e-09               0                 Open   ;
+ 7                    25                   RebombeoJarachina1              1000             100           1e-09               0                 Open   ;
+ 14                   29                   RebombeoGranjas1                1000             100           1e-09               0                 Open   ;
+ 15                   26                   32                              1000             100           1e-09               0                 Open   ;
+ 16                   26                   30                              1000             100           1e-09               0                 Open   ;
+ 17                   30                   31                              1000             100           1e-09               0                 Open   ;
+ 18                   31                   CisternaVillaFlorida2            1000             100           1e-09               0                 Open   ;
+ 19                   31                   CisternaVillaFlorida1            1000             100           1e-09               0                 Open   ;
+ 20                   30                   CisternaVistaHermosa            1000             100           1e-09               0                 Open   ;
+ 21                   CisternaVillaFlorida1 CisternaVillaFlorida2            1000             100           1e-09               0                 Open   ;
+ 22                   TanqueElevadoVistaHermosa VistaHermosa                    1000             100           1e-09               0                 Open   ;
+ 23                   TanqueElevadoVillaFlorida VillaFlorida                    1000             100           1e-09               0                 Open   ;
+ 24                   VistaHermosa         VillaFlorida                    1000              50           1e-09               0                 Open   ;
+ 25                   25                   RebombeoGranjas3                1000             100           1e-09               0                 Open   ;
+ 26                   24                   RebombeoGranjas3                1000             100           1e-09               0                 Open   ;
+ 27                   29                   RebombeoGranjas2                1000             100           1e-09               0                 Open   ;
+ 28                   29                   32                              1000             100           1e-09               0                 Open   ;
+ 29                   VillasDelRoble       32                              1000             100           1e-09               0                 Open   ;
+ 30                   32                   GranjasNorte                    1000             100           1e-09               0                 Open   ;
+ 31                   VillasDelRoble       GranjasNorte                    1000              50           1e-09               0               Closed   ;
+ 32                   VillasDelRoble       VillaFlorida                    1000              50           1e-09               0               Closed   ;
+ 33                   4                    33                              1000             100           1e-09               0                 Open   ;
+ 34                   33                   34                              1000             100           1e-09               0                 Open   ;
+ 35                   33                   CisternaLomaReal                1000             100           1e-09               0                 Open   ;
+ 36                   34                   CisternaFresnos                 1000             100           1e-09               0                 Open   ;
+ 40                   36                   5                               1000             100           1e-09               0                 Open   ;
+ 41                   36                   35                              1000             100           1e-09               0                 Open   ;
+ 42                   36                   CisternaLomaBonita              1000             100           1e-09               0                 Open   ;
+ 44                   TanqueElevadoLomaBonita LomaBonita                      1000             100           1e-09               0                 Open   ;
+ 45                   35                   CisternaVentura                 1000             100           1e-09               0                 Open   ;
+ 47                   Ventura              CisternaColinasDeLomaReal            1000              50           1e-09               0                 Open   ;
+ 49                   TanqueElevadoColinasDeLomaReal ColinasDeLomaReal               1000             100           1e-09               0                 Open   ;
+ 50                   ColinasDeLomaReal    LomaReal                        1000              50           1e-09               0                 Open   ;
+ 51                   6                    37                              1000             100           1e-09               0                 Open   ;
+ 52                   JarachinaSur         7                               1000             100           1e-09               0                 Open   ;
+ 54                   48                   Arcos                           1000             100           1e-09               0                 Open   ;
+ 57                   40                   42                              1000             100           1e-09               0                 Open   ;
+ 58                   42                   43                              1000             100           1e-09               0                 Open   ;
+ 59                   43                   44                              1000             100           1e-09               0                 Open   ;
+ 60                   42                   CisternaBugambilias1            1000             100           1e-09               0                 Open   ;
+ 61                   TanqueElevadoBugambilias1 Bugambilias                     1000             100           1e-09               0                 Open   ;
+ 62                   43                   CisternaBugambilias2            1000             100           1e-09               0                 Open   ;
+ 64                   44                   CisternaBugambilias3            1000             100           1e-09               0                 Open   ;
+ 66                   Bugambilias          TanqueElevadoBugambilias3            1000             100           1e-09               0                 Open   ;
+ 67                   TanqueElevadoBugambilias2 Bugambilias                     1000             100           1e-09               0                 Open   ;
+ 69                   37                   45                              1000             100           1e-09               0                 Open   ;
+ 70                   45                   CisternaHalcones                1000             100           1e-09               0                 Open   ;
+ 72                   Halcones             JarachinaSur                    1000              50           1e-09               0                 Open   ;
+ 73                   45                   RebombeoNuevoMexico             1000             100           1e-09               0                 Open   ;
+ 76                   RebombeoNuevoMexico  46                              1000             100           1e-09               0                 Open   ;
+ 77                   46                   NuevoMexico                     1000             100           1e-09               0                 Open   ;
+ 78                   46                   47                              1000             100           1e-09               0                 Open   ;
+ 81                   TanqueElevadoPuertaSur PuertaSur                       1000             100           1e-09               0                 Open   ;
+ 82                   47                   CisertaPuertaSur                1000             100           1e-09               0                 Open   ;
+ 83                   47                   CisternaMexicoItavu             1000             100           1e-09               0                 Open   ;
+ 85                   TanqueElevadoMexicoItavu MexicoItavu                     1000             100           1e-09               0                 Open   ;
+ 86                   46                   RebombeoAmpSanValentin            1000             100           1e-09               0                 Open   ;
+ 89                   40                   48                              1000             100           1e-09               0                 Open   ;
+ 90                   48                   CisternaSanValentin             1000             100           1e-09               0                 Open   ;
+ 92                   CisternaSanValentin  SanValentin                     1000             100           1e-09               0                 Open   ;
+ 93                   7                    49                              1000             100           1e-09               0                 Open   ;
+ 94                   49                   CisternaPuertaDelSol2            1000             100           1e-09               0                 Open   ;
+ 95                   49                   CisternaPuertaDelSol1            1000             100           1e-09               0                 Open   ;
+ 99                   TanqueElevadoPuertaDelSol1 PuertaDelSol                    1000             100           1e-09               0                 Open   ;
+ 100                  TanqueElevadoPuertaDelSol2 PuertaDelSol                    1000             100           1e-09               0                 Open   ;
+ 101                  37                   50                              1000             100           1e-09               0                 Open   ;
+ 102                  50                   40                              1000             100           1e-09               0                 Open   ;
+ 103                  50                   CistermaVistaAlta               1000             100           1e-09               0                 Open   ;
+ 5                    3                    RebombeoPastorLozano3            1000             100           1e-09               0                 Open   ;
+ 8                    3                    RebombeoPastorLozano4            1000             100           1e-09               0                 Open   ;
+
+[PUMPS]
+;ID                   Node1                Node2                Properties          
+ 10                   CisternaVillaFlorida2 TanqueElevadoVillaFlorida HEAD     1                      ;
+ 11                   CisternaVistaHermosa TanqueElevadoVistaHermosa HEAD     1                      ;
+ PozoVillasDelRoble   PozoVillasDelRoble   VillasDelRoble       HEAD     PozoVillasDelRoble     ;
+ 13                   CisternaLomaReal     LomaReal             HEAD     1                      ;
+ PozoFresnos          PozoFresnos          CisternaFresnos      HEAD     PozoFresnos            ;
+ 39                   CisternaFresnos      Fresnos              HEAD     1                      ;
+ 43                   CisternaLomaBonita   TanqueElevadoLomaBonita HEAD     1                      ;
+ 46                   CisternaVentura      Ventura              HEAD     1                      ;
+ 48                   CisternaColinasDeLomaReal TanqueElevadoColinasDeLomaReal HEAD     1                      ;
+ 53                   CisternaBugambilias1 TanqueElevadoBugambilias1 HEAD     1                      ;
+ 63                   CisternaBugambilias2 TanqueElevadoBugambilias2 HEAD     1                      ;
+ 65                   CisternaBugambilias3 TanqueElevadoBugambilias3 HEAD     1                      ;
+ 71                   CisternaHalcones     Halcones             HEAD     1                      ;
+ PozoNuevoMexico1     PozoNuevoMexico1     RebombeoNuevoMexico  HEAD     PozoNuevoMexico1       ;
+ PozoNuevoMexico2     PozoNuevoMexico2     RebombeoNuevoMexico  HEAD     PozoNuevoMexico2       ;
+ PozoPuertaSur        PozoPuertaSur        CisertaPuertaSur     HEAD     PozoPuertaSur          ;
+ 80                   CisertaPuertaSur     TanqueElevadoPuertaSur HEAD     1                      ;
+ 84                   CisternaMexicoItavu  TanqueElevadoMexicoItavu HEAD     1                      ;
+ PozoAmpSanValentin   PozoAmpSanValentin   RebombeoAmpSanValentin HEAD     PozoAmpSanValentin     ;
+ 88                   RebombeoAmpSanValentin AmpSanValentin       HEAD     1                      ;
+ PozoSanValentin      PozoSanValentin      CisternaSanValentin  HEAD     PozoSanValentin        ;
+ PozoPuertaDelSol     PozoPuertaDelSol     CisternaPuertaDelSol2 HEAD     PozoPuertaDelSol       ;
+ 97                   CisternaPuertaDelSol2 TanqueElevadoPuertaDelSol2 HEAD     1                      ;
+ 98                   CisternaPuertaDelSol1 TanqueElevadoPuertaDelSol1 HEAD     1                      ;
+ 104                  CistermaVistaAlta    VistaAlta            HEAD     1                      ;
+ PozoHcdDelSol        PozoHcdDelSol        CisternaHcdDelSol    HEAD     PozoHcdDelSol          ;
+ 106                  CisternaHcdDelSol    HcdDelSol            HEAD     1                      ;
+ RebombeoPastorLozano3 RebombeoPastorLozano3 1                    HEAD     RebombeoPastorLozano3   ;
+ RebombeoPastorLozano4 RebombeoPastorLozano4 2                    HEAD     RebombeoPastorLozano4   ;
+ 55                   RebombeoGranjas1     4                    HEAD     1                      ;
+ 56                   RebombeoGranjas2     5                    HEAD     1                      ;
+ 68                   RebombeoGranjas3     6                    HEAD     1                      ;
+ 107                  RebombeoJarachina1   7                    HEAD     1                      ;
+ 108                  RebombeoJarachina1   26                   HEAD     1                      ;
+ Anzalduzas           Anzalduzas           3                    HEAD     Anzalduzas             ;
+
+[VALVES]
+;ID                   Node1                Node2                            Diameter Type              Setting           Minor Loss
+
+[TAGS]
+;type      name       tag       
+NODE       VistaHermosa Zona      
+NODE       VillaFlorida Zona      
+NODE       VillasDelRoble Zona      
+NODE       GranjasNorte Zona      
+NODE       LomaReal   Zona      
+NODE       Fresnos    Zona      
+NODE       LomaBonita Zona      
+NODE       Ventura    Zona      
+NODE       ColinasDeLomaReal Zona      
+NODE       Halcones   Zona      
+NODE       Arcos      Zona      
+NODE       JarachinaSur Zona      
+NODE       Bugambilias Zona      
+NODE       NuevoMexico Zona      
+NODE       PuertaSur  Zona      
+NODE       MexicoItavu Zona      
+NODE       AmpSanValentin Zona      
+NODE       SanValentin Zona      
+NODE       PuertaDelSol Zona      
+NODE       VistaAlta  Zona      
+NODE       HcdDelSol  Zona      
+NODE       PozoVillasDelRoble Pozo      
+NODE       PozoFresnos Pozo      
+NODE       PozoNuevoMexico1 Pozo      
+NODE       PozoNuevoMexico2 Pozo      
+NODE       PozoPuertaSur Pozo      
+NODE       PozoAmpSanValentin Pozo      
+NODE       PozoSanValentin Pozo      
+NODE       PozoPuertaDelSol Pozo      
+NODE       PozoHcdDelSol Pozo      
+NODE       Anzalduzas Captacion 
+NODE       RebombeoPastorLozano3 Rebombeo  
+NODE       RebombeoJarachina1 Rebombeo  
+NODE       RebombeoPastorLozano4 Rebombeo  
+NODE       RebombeoGranjas3 Rebombeo  
+NODE       RebombeoGranjas2 Rebombeo  
+NODE       RebombeoGranjas1 Rebombeo  
+NODE       Jarachina2 Rebombeo  
+NODE       CisternaVistaHermosa Cisterna  
+NODE       CisternaVillaFlorida2 Cisterna  
+NODE       CisternaVillaFlorida1 Cisterna  
+NODE       TanqueElevadoVistaHermosa TanqueElevado
+NODE       TanqueElevadoVillaFlorida TanqueElevado
+NODE       CisternaLomaReal Cisterna  
+NODE       CisternaFresnos Cisterna  
+NODE       CisternaLomaBonita Cisterna  
+NODE       TanqueElevadoLomaBonita TanqueElevado
+NODE       CisternaVentura Cisterna  
+NODE       CisternaColinasDeLomaReal Cisterna  
+NODE       TanqueElevadoColinasDeLomaReal TanqueElevado
+NODE       TanqueElevadoBugambilias1 TanqueElevado
+NODE       CisternaBugambilias1 Cisterna  
+NODE       CisternaBugambilias2 Cisterna  
+NODE       TanqueElevadoBugambilias2 TanqueElevado
+NODE       CisternaBugambilias3 Cisterna  
+NODE       TanqueElevadoBugambilias3 TanqueElevado
+NODE       CisternaHalcones Cisterna  
+NODE       RebombeoNuevoMexico Rebombeo  
+NODE       CisertaPuertaSur Cisterna  
+NODE       TanqueElevadoPuertaSur TanqueElevado
+NODE       CisternaMexicoItavu Cisterna  
+NODE       TanqueElevadoMexicoItavu TanqueElevado
+NODE       RebombeoAmpSanValentin Rebombeo  
+NODE       CisternaSanValentin Cisterna  
+NODE       CisternaPuertaDelSol2 Cisterna  
+NODE       CisternaPuertaDelSol1 Cisterna  
+NODE       TanqueElevadoPuertaDelSol1 TanqueElevado
+NODE       TanqueElevadoPuertaDelSol2 TanqueElevado
+NODE       CistermaVistaAlta Cisterma  
+NODE       CisternaHcdDelSol Cisterna  
+LINK       10         Cisterna  
+LINK       104        Cisterma  
+LINK       106        Cisterna  
+LINK       107        Rebombeo  
+LINK       108        Rebombeo  
+LINK       11         Cisterna  
+LINK       13         Cisterna  
+LINK       24         Interconexion
+LINK       31         Interconexion
+LINK       32         Interconexion
+LINK       39         Cisterna  
+LINK       43         Cisterna  
+LINK       46         Cisterna  
+LINK       47         Interconexion
+LINK       48         Cisterna  
+LINK       50         Interconexion
+LINK       53         Cisterna  
+LINK       55         Rebombeo  
+LINK       56         Rebombeo  
+LINK       63         Cisterna  
+LINK       65         Cisterna  
+LINK       68         Rebombeo  
+LINK       71         Cisterna  
+LINK       72         Interconexion
+LINK       80         Cisterna  
+LINK       84         Cisterna  
+LINK       88         Rebombeo  
+LINK       97         Cisterna  
+LINK       98         Cisterna  
+LINK       Anzalduzas Captacion 
+LINK       PozoAmpSanValentin Pozo      
+LINK       PozoFresnos Bomba     
+LINK       PozoHcdDelSol Bomba     
+LINK       PozoNuevoMexico1 Bomba     
+LINK       PozoNuevoMexico2 Bomba     
+LINK       PozoPuertaDelSol Bomba     
+LINK       PozoPuertaSur Bomba     
+LINK       PozoSanValentin Bomba     
+LINK       PozoVillasDelRoble Bomba     
+LINK       RebombeoPastorLozano3 Rebombeo  
+LINK       RebombeoPastorLozano4 Rebombeo  
+
+[DEMANDS]
+;ID        Demand     Pattern   
+
+[STATUS]
+;ID        Setting   
+
+[PATTERNS]
+;ID        Multipliers
+
+[CURVES]
+;ID         X-Value      Y-Value     
+;PUMP: PozoFresnos
+ PozoFresnos     7.300000    10.000000   ;
+
+;PUMP: PozoSanValentin
+ PozoSanValentin     5.400000    10.000000   ;
+
+;PUMP: PozoNuevoMexico1
+ PozoNuevoMexico1     3.500000    10.000000   ;
+
+;PUMP: PozoNuevoMexico2
+ PozoNuevoMexico2     6.700000    10.000000   ;
+
+;PUMP: PozoPuertaSur
+ PozoPuertaSur    14.000000    10.000000   ;
+
+;PUMP: PozoHcdDelSol
+ PozoHcdDelSol    10.000000    10.000000   ;
+
+;PUMP: PozoAmpSanValentin
+ PozoAmpSanValentin    42.500000    10.000000   ;
+
+;PUMP: PozoPuertaDelSol
+ PozoPuertaDelSol    11.900000    10.000000   ;
+
+;PUMP: PozoVillasDelRoble
+ PozoVillasDelRoble    17.900000    10.000000   ;
+
+;PUMP: RebombeoPastorLozano3
+ RebombeoPastorLozano3   220.600000    10.000000   ;
+
+;PUMP: RebombeoPastorLozano4
+ RebombeoPastorLozano4   458.900000    10.000000   ;
+
+;PUMP: Anzalduzas
+ Anzalduzas  1766.300000    10.000000   ;
+
+;PUMP: 1
+ 1             10.000000    10.000000   ;
+
+
+[CONTROLS]
+
+[RULES]
+
+[ENERGY]
+GLOBAL EFFICIENCY      75.0000
+GLOBAL PRICE           0.0000
+DEMAND CHARGE          0.0000
+
+[EMITTERS]
+;ID        Flow coefficient
+
+[QUALITY]
+
+[SOURCES]
+;Node      Type       Quality    Pattern   
+
+[REACTIONS]
+;Type           Pipe/Tank               Coefficient
+
+ ORDER BULK 1
+ ORDER TANK 1
+ ORDER WALL 1
+ GLOBAL BULK 0.0000    
+ GLOBAL WALL 0.0000    
+ LIMITING POTENTIAL 0.0000    
+ ROUGHNESS CORRELATION 0.0000    
+
+[MIXING]
+;Tank ID             Model Fraction
+
+[TIMES]
+DURATION             00:00:00
+HYDRAULIC TIMESTEP   01:00:00
+QUALITY TIMESTEP     00:05:00
+PATTERN TIMESTEP     01:00:00
+PATTERN START        00:00:00
+REPORT TIMESTEP      01:00:00
+REPORT START         00:00:00
+START CLOCKTIME      00:00:00 AM
+RULE TIMESTEP        00:06:00
+STATISTIC            NONE      
+
+[REPORT]
+SUMMARY    NO
+PAGE       0
+
+[OPTIONS]
+UNITS                LPS                 
+HEADLOSS             D-W                 
+SPECIFIC GRAVITY     1
+VISCOSITY            1
+TRIALS               40
+ACCURACY             0.001
+CHECKFREQ            2
+MAXCHECK             10
+UNBALANCED           CONTINUE 10
+DEMAND MULTIPLIER    1
+EMITTER EXPONENT     0.5
+QUALITY              NONE                
+DIFFUSIVITY          1
+TOLERANCE            0.01
+
+[COORDINATES]
+;Node      X-Coord    Y-Coord   
+24               2031.915000000       3297.872000000
+25               1287.234000000       3787.234000000
+26               1287.234000000       7659.574000000
+29              -7436.170000000       9042.553000000
+30               1287.234000000      10978.723000000
+31              -2436.170000000      11531.915000000
+VistaHermosa       2840.426000000      16808.511000000
+VillaFlorida       -904.255000000      14574.468000000
+32              -5670.213000000       9042.553000000
+VillasDelRoble      -5648.936000000      16148.936000000
+GranjasNorte      -4691.489000000       9042.553000000
+33             -16265.957000000       7106.383000000
+34             -18478.723000000       7106.383000000
+LomaReal       -16271.344000000      12488.366000000
+Fresnos        -18457.447000000      11893.617000000
+35             -13968.085000000       7595.745000000
+36             -11074.468000000       7595.745000000
+LomaBonita     -11053.191000000      12297.872000000
+Ventura        -13976.211000000      12865.618000000
+ColinasDeLomaReal     -16274.083000000      15227.320000000
+37              -8760.781000000       6303.415000000
+Halcones       -13645.267000000       1468.988000000
+Arcos          -31703.323000000       9965.674000000
+40             -22835.106000000       6307.062000000
+JarachinaSur     -12686.170000000       3817.700000000
+42             -22835.106000000       3594.296000000
+43             -22850.925000000      -1436.344000000
+44             -22850.925000000      -6430.903000000
+Bugambilias     -18346.028000000      -1273.123000000
+45              -8748.640000000       -391.730000000
+46             -13879.601000000     -13929.864000000
+NuevoMexico      -9635.858000000     -13929.864000000
+47             -13879.601000000     -20132.258000000
+PuertaSur       -9080.907000000     -23527.253000000
+MexicoItavu     -24064.585000000     -18630.626000000
+AmpSanValentin     -23901.364000000     -13962.508000000
+48             -27720.733000000       6309.526000000
+SanValentin     -27720.733000000      -1884.162000000
+49                -38.470000000      -2700.267000000
+PuertaDelSol       3095.371000000      -7270.452000000
+50              -9915.678000000       6302.650000000
+VistaAlta       -9901.861000000      11318.151000000
+HcdDelSol        2983.441000000     -17867.517000000
+1                9770.248000000       5612.717000000
+2                9934.147000000       3297.638000000
+4               -7437.383000000       7108.902000000
+5               -8203.862000000       7597.334000000
+6               -8760.781000000       7877.461000000
+7                 429.236000000       5619.948000000
+3               11672.334000000       4861.691000000
+PozoVillasDelRoble      -7308.511000000      16148.936000000
+PozoFresnos     -20223.404000000      10106.383000000
+PozoNuevoMexico1     -15609.743000000      -9784.053000000
+PozoNuevoMexico2     -15642.387000000     -11122.465000000
+PozoPuertaSur      -7220.189000000     -20099.614000000
+PozoAmpSanValentin     -21420.407000000     -11710.060000000
+PozoSanValentin     -30266.979000000       1021.170000000
+PozoPuertaDelSol      -3857.839000000      -5344.445000000
+PozoHcdDelSol       -203.040000000     -13715.435000000
+Anzalduzas      13388.226000000       4860.191000000
+RebombeoPastorLozano3      10372.340000000       5617.021000000
+RebombeoJarachina1       1287.234000000       5617.021000000
+RebombeoPastorLozano4      10585.106000000       3297.872000000
+RebombeoGranjas3      -8760.781000000       8381.022000000
+RebombeoGranjas2      -8202.128000000       8382.979000000
+RebombeoGranjas1      -7436.170000000       8297.872000000
+Jarachina2       2031.915000000       5191.489000000
+CisternaVistaHermosa       2840.426000000      13574.468000000
+CisternaVillaFlorida2      -3159.574000000      12127.660000000
+CisternaVillaFlorida1      -3159.574000000      11531.915000000
+TanqueElevadoVistaHermosa       2840.426000000      14574.468000000
+TanqueElevadoVillaFlorida      -3180.851000000      13234.043000000
+CisternaLomaReal     -16274.083000000      11248.597000000
+CisternaFresnos     -18478.723000000      10106.383000000
+CisternaLomaBonita     -11074.468000000      10063.830000000
+TanqueElevadoLomaBonita     -11053.191000000      11085.106000000
+CisternaVentura     -13976.211000000      11354.980000000
+CisternaColinasDeLomaReal     -13976.211000000      15248.597000000
+TanqueElevadoColinasDeLomaReal     -15082.594000000      15227.320000000
+TanqueElevadoBugambilias1     -21675.734000000       1893.362000000
+CisternaBugambilias1     -21654.255000000       3594.296000000
+CisternaBugambilias2     -21545.158000000      -1436.344000000
+TanqueElevadoBugambilias2     -21545.158000000      -3035.909000000
+CisternaBugambilias3     -21741.023000000      -6430.903000000
+TanqueElevadoBugambilias3     -21773.667000000      -8161.045000000
+CisternaHalcones     -13645.267000000       -391.730000000
+RebombeoNuevoMexico     -13879.601000000     -10371.649000000
+CisertaPuertaSur      -9048.263000000     -20132.258000000
+TanqueElevadoPuertaSur      -9080.907000000     -21764.467000000
+CisternaMexicoItavu     -20343.149000000     -20132.258000000
+TanqueElevadoMexicoItavu     -21975.358000000     -18630.626000000
+RebombeoAmpSanValentin     -21420.407000000     -13929.864000000
+CisternaSanValentin     -27720.733000000       1021.170000000
+CisternaPuertaDelSol2      -1833.900000000      -5311.801000000
+CisternaPuertaDelSol1       3095.371000000      -2700.267000000
+TanqueElevadoPuertaDelSol1       3128.016000000      -4299.832000000
+TanqueElevadoPuertaDelSol2      -1833.900000000      -7335.740000000
+CistermaVistaAlta      -9915.678000000      10033.188000000
+CisternaHcdDelSol       2935.161000000     -13763.715000000
+
+[VERTICES]
+;Link      X-Coord    Y-Coord   
+6                9935.130000000       3789.645000000
+15              -5670.213000000       7659.574000000
+17              -2457.447000000      11000.000000000
+18              -2436.170000000      12127.660000000
+20               2840.426000000      10978.723000000
+23              -3159.574000000      14574.468000000
+24               -904.255000000      16808.511000000
+25              -6351.064000000       3787.234000000
+25              -6351.064000000       9808.511000000
+25              -8627.660000000       9808.511000000
+25              -8882.979000000       8659.574000000
+26              -6648.936000000       3297.872000000
+26              -6648.936000000       9531.915000000
+26              -8521.277000000       9531.915000000
+27              -8202.128000000       9042.553000000
+31              -4691.489000000      14893.617000000
+32              -2074.468000000      16148.936000000
+52             -12686.170000000       5604.934000000
+54             -31703.323000000       6309.526000000
+61             -18346.028000000       1893.362000000
+66             -18346.028000000      -8161.045000000
+67             -19749.728000000      -3035.909000000
+67             -19749.728000000      -1273.123000000
+72             -12688.142000000       1470.373000000
+73              -8754.465000000     -10371.649000000
+93                425.313000000       4641.775000000
+93                -33.193000000       4641.775000000
+94              -1833.900000000      -2700.267000000
+
+[LABELS]
+ 12988.201         	7398.282          	"RebombeoPastorLozano3"	RebombeoPastorLozano3
+ 12204.925         	3713.653          	"RebombeoPastorLozano4"	RebombeoPastorLozano4
+ 2899.914          	8067.648          	"RebombeoJarachina"	RebombeoJarachina1
+ -2031.915         	14170.213         	"Villa Florida"
+ 3074.468          	17446.809         	"Vista Hermosa"
+ -4287.234         	8787.234          	"Granjas Norte"
+ -7589.884         	17763.140         	"Villas del Roble"
+ -19853.009        	13707.618         	"Loma Real"
+ -22122.170        	12162.657         	"Fresnos"
+ -10414.265        	12790.297         	"Loma Bonita"
+ -13455.906        	13611.058         	"Ventura"
+ -18646.009        	16700.979         	"Colinas de Loma Real"
+ -17873.860        	4412.557          	"Jarachina Sur"
+ -33902.496        	10328.016         	"Arcos"
+ -18052.231        	-261.153          	"Bugambilias"
+ -17245.248        	2012.403          	"Halcones"
+ -8507.204         	-12942.954        	"Nuevo Mexico"
+ -8591.244         	-23266.099        	"Puerta Sur"
+ -25827.371        	-19152.933        	"Mexico Itavu"
+ -29798.694        	-12894.674        	"Amp.San Valentin"
+ -34160.619        	-1644.974         	"San Valentin"
+ 3846.188          	-6976.654         	"Puerta del Sol"
+ -8821.024         	11293.617         	"Vista Alta"
+ 3900.762          	-17481.276        	"Hcd.del Sol"
+
+[BACKDROP]
+DIMENSIONS    -33817.740    -25544.040    12699.530    18825.300
+UNITS    NONE
+OFFSET    0.00    0.00
+
+[END]

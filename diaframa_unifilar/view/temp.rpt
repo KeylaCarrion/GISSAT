@@ -1,0 +1,26 @@
+  Page 1                                    Fri Mar 10 11:42:29 2023
+
+  ******************************************************************
+  *                           E P A N E T                          *
+  *                   Hydraulic and Water Quality                  *
+  *                   Analysis for Pipe Networks                   *
+  *                         Version 2.2                            *
+  ******************************************************************
+  
+  Analysis begun Fri Mar 10 11:42:29 2023
+
+  WARNING: Pump 10 open but exceeds maximum flow at 0:00:00 hrs.
+  WARNING: Pump 11 open but exceeds maximum flow at 0:00:00 hrs.
+  WARNING: Pump PozoVillasDelRoble closed because cannot deliver head at 0:00:00 hrs.
+  WARNING: Pump 39 closed because cannot deliver head at 0:00:00 hrs.
+  WARNING: Pump 43 open but exceeds maximum flow at 0:00:00 hrs.
+  WARNING: Pump 48 open but exceeds maximum flow at 0:00:00 hrs.
+  WARNING: Pump 80 open but exceeds maximum flow at 0:00:00 hrs.
+  WARNING: Pump 84 open but exceeds maximum flow at 0:00:00 hrs.
+  WARNING: Pump 88 closed because cannot deliver head at 0:00:00 hrs.
+  WARNING: Pump 97 open but exceeds maximum flow at 0:00:00 hrs.
+  WARNING: Pump 98 open but exceeds maximum flow at 0:00:00 hrs.
+  WARNING: Pump 104 closed because cannot deliver head at 0:00:00 hrs.
+  WARNING: Pump 106 closed because cannot deliver head at 0:00:00 hrs.
+   
+  Analysis ended Fri Mar 10 11:42:29 2023
