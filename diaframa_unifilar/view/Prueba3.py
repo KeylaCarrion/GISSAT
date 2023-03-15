@@ -23,7 +23,6 @@ def find_connections(node_name, dest_node_name, visited_nodes):
                         if wn.get_node(other_node_name).tag == 'Zona':
                             continue
                         find_connections(other_node_name, dest_node_name, visited_nodes)
-                        print("---------")
 
 
 # Encontrar todas las conexiones desde un nodo de depósito a un nodo de zona
@@ -45,7 +44,6 @@ for node_name in wn.node_name_list:
                 tanques_conectados[0]).end_node_name == node_name else wn.get_link(tanques_conectados[0]).end_node_name
             if wn.get_node(tanque_name).tag == 'Zona':
                 print(f"{node_name} - {tanque_name}")
-
                 find_connections(tanque_name, node_name, [])
         elif len(tanques_conectados) > 1:
             # El método Enumerate() agrega un contador a un objeto iterable y lo devuelve en forma de objeto enumerador.
@@ -53,13 +51,7 @@ for node_name in wn.node_name_list:
                 tanque_name = wn.get_link(tanque_link_name).start_node_name if wn.get_link(
                     tanque_link_name).end_node_name == node_name else wn.get_link(tanque_link_name).end_node_name
                 print(f"{node_name} - {tanque_name}")
-
                 if i == 0:
                     find_connections(tanque_name, node_name, [])
                 else:
                     find_connections(tanque_name, wn.get_link(tanques_conectados[i - 1]).start_node)
-
-
-
-
-

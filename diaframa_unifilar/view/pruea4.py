@@ -10,20 +10,25 @@ def find_connections(node_name, dest_node_name, visited_nodes):
     visited_nodes.append(node_name)
     for link_name in wn.get_links_for_node(node_name):
         link = wn.get_link(link_name)
-        if link.link_type in ['Pipe', 'Pump', 'Tank', 'Reservoir', 'Junction']:
+        if wn.get_node(other_node_name).tag == 'Pozo' and wn.get_node(other_node_name).tag == 'Captacion':
             other_node_name = link.end_node_name if link.start_node_name == node_name else link.start_node_name
             if other_node_name is not None:
                 if other_node_name not in visited_nodes:
                     if link.tag is not None and "Interconexion" in link.tag:
                         continue
                     if other_node_name == dest_node_name:
-                        print(f"{wn.get_node(node_name).name} - {wn.get_node(other_node_name).name}")
+                        print(f"{node_name} - {other_node_name}")
                     else:
-                        print(f"{wn.get_node(node_name).name} - {wn.get_node(other_node_name).name}")
+                        print(f"{node_name} - {other_node_name}")
                         if wn.get_node(other_node_name).tag == 'Zona':
                             continue
                         find_connections(other_node_name, dest_node_name, visited_nodes)
-                        print("---------")
+pozosLista = {}
+node_name = wn.node_name_list
+for lik_name in wn.get_links_for_node(node_name):
+    if wn.get_node(lik_name).tag == "POZO":
+        print(lik_name)
+        pozosLista.append(lik_name)
 
 
 # Encontrar todas las conexiones desde un nodo de depósito a un nodo de zona
@@ -35,14 +40,24 @@ for node_name in wn.node_name_list:
             if link.link_type in ['Pipe', 'Pump', 'Tank']:
                 other_node_name = link.end_node_name if link.start_node_name == node_name else link.start_node_name
                 if other_node_name is not None and wn.get_node(other_node_name).tag == 'Zona':
-                    print(f"{wn.get_node(node_name).name} - {wn.get_node(other_node_name).name}")
+                    print(f"{node_name} - {other_node_name}")
                     find_connections(other_node_name, node_name, [])
 
     elif node.node_type in ['Tank', 'Junction']:
         tanques_conectados = [n for n in wn.get_links_for_node(node_name) if wn.get_link(n).link_type == 'Tank']
         if len(tanques_conectados) == 1:
             tanque_name = wn.get_link(tanques_conectados[0]).start_node_name if wn.get_link(
-                tanques_conectados[0]).end_node_name == node_name else None
-
-
-
+                tanques_conectados[0]).end_node_name == node_name else wn.get_link(tanques_conectados[0]).end_node_name
+            if wn.get_node(tanque_name).tag == 'Zona':
+                print(f"{node_name} - {tanque_name}")
+                find_connections(tanque_name, node_name, [])
+        elif len(tanques_conectados) > 1:
+            # El método Enumerate() agrega un contador a un objeto iterable y lo devuelve en forma de objeto enumerador.
+            for i, tanque_link_name in enumerate(tanques_conectados):
+                tanque_name = wn.get_link(tanque_link_name).start_node_name if wn.get_link(
+                    tanque_link_name).end_node_name == node_name else wn.get_link(tanque_link_name).end_node_name
+                print(f"{node_name} - {tanque_name}")
+                if i == 0:
+                    find_connections(tanque_name, node_name, [])
+                else:
+                    find_connections(tanque_name, wn.get_link(tanques_conectados[i - 1]).start_node)
