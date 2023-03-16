@@ -39,6 +39,7 @@ for lik_name in node_name:
         for link_Pozo in wn.get_links_for_node(lik_name):
             link = wn.get_link(link_Pozo)
             if link.link_type in ['Pipe', 'Pump', 'Tank']:
+                other_node_name = link.end_node_name if link.start_node_name == node_name else link.start_node_name
                 start_node = link.start_node_name
                 end_node = link.end_node_name
-                print(start_node, " - ", end_node)
+                print(start_node, " <--> ", end_node, " - ")
