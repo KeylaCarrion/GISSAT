@@ -23,12 +23,6 @@ def find_connections(node_name, dest_node_name, visited_nodes):
                         if wn.get_node(other_node_name).tag == 'Zona':
                             continue
                         find_connections(other_node_name, dest_node_name, visited_nodes)
-pozosLista = {}
-node_name = wn.node_name_list
-for lik_name in wn.get_links_for_node(node_name):
-    if wn.get_node(lik_name).tag == "POZO":
-        print(lik_name)
-        pozosLista.append(lik_name)
 
 
 # Encontrar todas las conexiones desde un nodo de depósito a un nodo de zona
