@@ -30,9 +30,6 @@ for lik_name in node_name:
     if wn.get_node(lik_name).tag == "Zona":
         print(lik_name)
 
-
-
-
 print("  ")
 print("pozos- links")
 node_name = wn.node_name_list
@@ -42,7 +39,6 @@ for lik_name in node_name:
         for link_Pozo in wn.get_links_for_node(lik_name):
             link = wn.get_link(link_Pozo)
             if link.link_type in ['Pipe', 'Pump', 'Tank']:
-                start_node = wn.get_node(lik_name).start_node
-                end_node = wn.get_node(lik_name).end_node
-                print(start_node, end_node)
-
+                start_node = link.start_node_name
+                end_node = link.end_node_name
+                print(start_node, " - ", end_node)
