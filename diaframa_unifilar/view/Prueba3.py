@@ -23,6 +23,7 @@ def find_connections(node_name, dest_node_name, visited_nodes):
                         if wn.get_node(other_node_name).tag == 'Zona':
                             continue
                         find_connections(other_node_name, dest_node_name, visited_nodes)
+                        print("-------------")
 
 
 # Encontrar todas las conexiones desde un nodo de depósito a un nodo de zona
