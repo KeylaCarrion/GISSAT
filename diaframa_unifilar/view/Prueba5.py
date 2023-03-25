@@ -1,93 +1,100 @@
-import pandas as pd
 import wntr
-import numpy as np
+import pandas as pd
+import openpyxl
+from openpyxl import Workbook
+from openpyxl.styles import Border, Side
 
-# Crear modelo de red de agua
+# Cargar el archivo INP
 inp_file = r'C:\Users\RI\Downloads\EPANET-dev\example-networks\N6.inp'
 wn = wntr.network.WaterNetworkModel(inp_file)
 
-listaPozos = []
-listaZonas = []
-listaNodos = wn.node_name_list
+# crear un nuevo libro de trabajo de Excel con openpyxl
+wb = Workbook()
 
+# seleccionar la hoja activa (por defecto)
+ws = wb.active
+
+# Obtener lista de nodos y lista de zonas
+listaNodos = wn.node_name_list
+listaZonas = []
+
+# Llenar la lista de Zonas
 for zona in listaNodos:
     if wn.get_node(zona).tag == 'Zona':
         listaZonas.append(zona)
+
+# Crear tabla de resultados
+tablaZonas = pd.DataFrame(columns=['Zonas', 'Tanques', 'Cisternas', 'Pozos', 'Rebombeos', 'Captaciones'])
+tanques_por_zona = {}
+cisternas_por_zona = {}
+pozos_por_zona = {}
+filas = []
+filas_tanques = []
+# Recorrer cada zona
+for zona in listaZonas:
+    # Obtener lista de tanques en la zona
+
+    # Obtener lista de tanques conectados a la zona
+    tuberias = wn.get_links_for_node(zona)
+    tanques_conectados = []
+    cisternas_conectados = []
+    pozos_conectados = []
+    rebombeos_conectados = []
+    for tuberia in tuberias:
+        nodo_Tanque = wn.get_link(tuberia).start_node_name
+        if wn.get_node(nodo_Tanque).tag == 'TanqueElevado':
+            tanques_conectados.append(nodo_Tanque)
+
+        if wn.get_node(nodo_Tanque).tag == 'Cisterna':
+            cisternas_conectados.append(nodo_Tanque)
+
+        if wn.get_node(nodo_Tanque).tag == 'Pozo':
+            pozos_conectados.append(nodo_Tanque)
+
+        if wn.get_node(nodo_Tanque).tag == 'Rebombeo':
+            rebombeos_conectados.append(nodo_Tanque)
+
+    tanques_list = []
+
+    for tanque in tanques_conectados:
+        tanques_list.append(tanque)
+
+    list_tanques = ','.join(tanques_list)
+
+    cisternas_str = '\n'.join(cisternas_conectados)
+    pozos_str = '\n'.join(pozos_conectados)
+    rebombeos_str = '\n'.join(rebombeos_conectados)
+
+    # Agregar cada elemento de la lista en una celda separada de la misma columna
+    if len(tanques_list) == 0:
+        # Si no hay tanques conectados, agregar una fila con la zona y sin tanques
+        filas.append([zona, list_tanques, cisternas_str, pozos_str, rebombeos_str])
     else:
-        listaZonas.append(None)
+        for i, tanque in enumerate(tanques_conectados):
+            if i == 0:
+                # La primera fila para una zona tendrá el nombre de la zona
+                filas.append([zona, tanque, '', '', '', ''])
+            else:
+                # Las filas siguientes para la misma zona solo tendrán el nombre del tanque
+                filas.append([zona, tanque, '', '', '', ''])
 
-# Llenar la lista de Pozos
-for pozo in listaNodos:
-    if wn.get_node(pozo).tag == 'Pozo':
-        listaPozos.append(pozo)
+    tablaZonas = pd.DataFrame(filas, columns=['Zona', 'Tanque', 'Cisternas', 'Pozos', 'Rebombeos', 'Captaciones'])
+
+    tablaZonas.to_excel('BalanceV.xlsx', index=False)
+
+
+# Definir función para aplicar estilo a celdas sin tanque
+def estilo_celdas_sin_tanque(valor):
+    if valor == '':
+
+        return 'background-color: #C0C0C0'
     else:
-        listaPozos.append(None)
+        return ''
 
 
+# Aplicar estilo a tablaZonas y guardar en un archivo Excel
+tablaZonas.style.applymap(estilo_celdas_sin_tanque).to_excel('BalanceV.xlsx', index=False)
 
-def find_connections(node_name, dest_node_name, visited_nodes):
-    visited_nodes.append(node_name)
-    connections = []
-    for link_name in wn.get_links_for_node(node_name):
-        link = wn.get_link(link_name)
-        if link.link_type in ['Pipe', 'Pump', 'Tank', 'Reservoir', 'Junction']:
-            other_node_name = link.end_node_name if link.start_node_name == node_name else link.start_node_name
-            if other_node_name is not None:
-                if other_node_name not in visited_nodes:
-                    if link.tag is not None and "Interconexion" in link.tag:
-                        continue
-                    if other_node_name == dest_node_name:
-                        connections.append(f"{node_name} - {other_node_name}")
-                    else:
-                        connections.append(f"{node_name} - {other_node_name}")
-                        if wn.get_node(other_node_name).tag == 'Zona':
-                            continue
-                        connections += find_connections(other_node_name, dest_node_name, visited_nodes)
-    return connections
-
-
-# Crear lista de conexiones
-connections = []
-for node_name in wn.node_name_list:
-    node = wn.get_node(node_name)
-    if node.node_type == 'Reservoir':
-        for link_name in wn.get_links_for_node(node_name):
-            link = wn.get_link(link_name)
-            if link.link_type in ['Pipe', 'Pump', 'Tank']:
-                other_node_name = link.end_node_name if link.start_node_name == node_name else link.start_node_name
-                if other_node_name is not None and wn.get_node(other_node_name).tag == 'Zona':
-                    connections.append([node_name, other_node_name])
-                    connections += find_connections(other_node_name, node_name, [])
-    elif node.node_type in ['Tank', 'Junction']:
-        tanques_conectados = [n for n in wn.get_links_for_node(node_name) if wn.get_link(n).link_type == 'Tank']
-        if len(tanques_conectados) == 1:
-            tanque_name = wn.get_link(tanques_conectados[0]).start_node_name if wn.get_link(
-                tanques_conectados[0]).end_node_name == node_name else wn.get_link(tanques_conectados[0]).end_node_name
-            if wn.get_node(tanque_name).tag == 'Zona':
-                connections.append([node_name, tanque_name])
-                connections += find_connections(tanque_name, node_name, [])
-        elif len(tanques_conectados) > 1:
-            for i, tanque_link_name in enumerate(tanques_conectados):
-                tanque_name = wn.get_link(tanque_link_name).start_node_name if wn.get_link(
-                    tanque_link_name).end_node_name == node_name else wn.get_link(tanque_link_name).end_node_name
-                if i == 0:
-                    connections.append([node_name, tanque_name])
-                    connections += find_connections(tanque_name, node_name, [])
-                else:
-                    connections.append([tanque_name, wn.get_link(tanques_conectados[i - 1]).start_node])
-                    connections += find_connections(tanque_name, wn.get_link(tanques_conectados[i - 1]).start_node)
-
-print(connections)
-df = pd.DataFrame(
-    columns=['Macrozonas', 'Captaciones', 'Rebombeos', 'Rebombeo', 'Rebombeo2', 'Pozos', 'Rebombeo-Cisterna', 'Tanque',
-             'Subzonas'])
-#df['Subzonas'] = listaZonas
-df['Pozos'] = listaPozos
-
-
-
-
-print(df)
-df = df.dropna(subset=['Pozos'])
-
-df.to_excel('Balance Volumetrico.xlsx', index=False)
+# Imprimir tablaZonas
+print(tablaZonas)
+print(tanques_por_zona)
