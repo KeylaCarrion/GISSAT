@@ -1,16 +1,9 @@
 import pandas as pd
 import wntr
-from openpyxl import Workbook
 
 # Cargar el archivo INP
-inp_file = r'C:\Users\RI\Downloads\EPANET-dev\example-networks\N6.inp'
+inp_file = r'C:\Users\RI\Downloads\EPANET-dev\example-networks\N7.inp'
 wn = wntr.network.WaterNetworkModel(inp_file)
-
-# crear un nuevo libro de trabajo de Excel con openpyxl
-wb = Workbook()
-
-# seleccionar la hoja activa (por defecto)
-ws = wb.active
 
 # Obtener lista de nodos y lista de zonas
 listaNodos = wn.node_name_list
@@ -26,15 +19,13 @@ for tanque in wn.tank_name_list:
     if wn.get_node(tanque).tag == 'TanqueElevado':
         listaTanques.append(tanque)
 
-# Crear tabla de resultados
-tablaZonas = pd.DataFrame(columns=['Zonas', 'Tanques', 'Cisternas', 'Pozos', 'Rebombeos', 'Captaciones'])
 tanques_por_cisterna = []
 rebombeos_por_pozos = []
 tanques_por_pozos = []
 cisternas_por_pozos = []
 cisternas_por_zona = {}
 pozos_por_zona = {}
-pozos_por_rebombeo=[]
+pozos_por_rebombeo = []
 filas = []
 filas_tanques = []
 # Recorrer cada zona
@@ -49,9 +40,10 @@ for zona in listaZonas:
     cisternas_pozos_conectados = []
     rebombeos_pozos_conectados = []
     pozos_conectados = []
-    zona_rebombeos_pozos=[]
+    zona_rebombeos_pozos = []
     rebombeos_conectados = []
     Captaciones_conectados = []
+    conexion_rebombeo_captacion = []
     for tuberia in tuberias:
         nodo_Tanque = wn.get_link(tuberia).start_node_name
 
@@ -134,19 +126,58 @@ for zona in listaZonas:
                 if wn.get_node(tub).tag == 'Pozo':
                     rebombeos_pozos_conectados.append(tub)
 
+                if wn.get_node(tub).tag == 'Conexion':
+                    print(tub)
+                if wn.get_node(tub).tag == 'Captacion':
+                    print(tub)
+
         if wn.get_node(nodo_Tanque).tag == 'Conexion':
+
             tuberias_conexion = wn.get_links_for_node(nodo_Tanque)
+
             for conexion in tuberias_conexion:
                 con = wn.get_link(conexion).start_node_name
-                print(con)
                 if wn.get_node(con).tag == 'Rebombeo':
                     rebombeos_conectados.append(con)
                     tube_con = wn.get_links_for_node(con)
                     for conexion2 in tube_con:
                         con2 = wn.get_link(conexion2).start_node_name
+
                         if wn.get_node(con2).tag == 'Pozo':
-                            print("Conexion--", con2)
                             zona_rebombeos_pozos.append(con2)
+                        if wn.get_node(con2).tag == 'Captacion':
+
+                            conexion_rebombeo_captacion.append(con2)
+                        if wn.get_node(con2).tag == 'Conexion':
+                            tuberias_conexion2 = wn.get_links_for_node(con2)
+                            for conexionw in tuberias_conexion2:
+                                con9 = wn.get_link(conexionw).start_node_name
+
+                                if wn.get_node(con9).tag == 'Rebombeo':
+                                    print("REbombeo",con9)
+                                if wn.get_node(con9).tag == 'Cisterna':
+                                    print("Cisterna",con9)
+                                if wn.get_node(con9).tag == 'Pozo':
+                                    print("Pozo",con9)
+                                if wn.get_node(con9).tag == 'Captacion':
+                                    print("Captacion",con9)
+                                if wn.get_node(con9).tag == 'Conexion':
+                                    print("conexion",con9)
+                                    tuberias_conexion21 = wn.get_links_for_node(con2)
+                                    for conexionx in tuberias_conexion21:
+                                        con91 = wn.get_link(conexionw).start_node_name
+                                        if wn.get_node(con91).tag == 'Rebombeo':
+                                            print("REbombeo", con91)
+                                        if wn.get_node(con9).tag == 'Cisterna':
+                                            print("Cisterna", con91)
+                                        if wn.get_node(con9).tag == 'Pozo':
+                                            print("Pozo", con91)
+                                        if wn.get_node(con9).tag == 'Captacion':
+                                            print("Captacion", con91)
+                                        if wn.get_node(con9).tag == 'Conexion':
+                                            print("conexion", con91)
+
+
 
     tanques_por_cisterna = cisternas_conectados + tanques_cisternas_conectados
     tanques_por_pozos = pozos_conectados + tanques_pozos_conectados
@@ -158,19 +189,19 @@ for zona in listaZonas:
     for tanque in tanques_conectados:
         tanques_list.append(tanque)
 
-    list_tanques = ','.join(tanques_list)
+    list_tanques = '\n'.join(tanques_list)
 
     cisternas_list = []
     for cisternas in tanques_por_cisterna:
         cisternas_list.append(cisternas)
 
-    list_cisternas = ','.join(cisternas_list)
+    list_cisternas = '\n'.join(cisternas_list)
 
     pozos_list = []
     for pozo in tanques_por_pozos:
         pozos_list.append(pozo)
 
-    list_pozo = ','.join(pozos_list)
+    list_pozo = '\n'.join(pozos_list)
 
     cisternas_pozos_list = []
     for pozo_cisterna in pozos_por_rebombeo:
@@ -180,26 +211,28 @@ for zona in listaZonas:
     for rebombeos in rebombeos_conectados:
         rebombeos_list.append(rebombeos)
 
-    list_pozo_cisterna = ','.join(cisternas_pozos_list)
-    list_rebombeo = ','.join(rebombeos_list)
+    list_pozo_cisterna = '\n'.join(cisternas_pozos_list)
+    list_rebombeo = '\n'.join(rebombeos_list)
 
-    rebombeos_str = '\n'.join(rebombeos_conectados)
+    rebombeos_conexion_captacion = []
+    for con_capta in conexion_rebombeo_captacion:
+        rebombeos_conexion_captacion.append(con_capta)
+
+    list_rebombeos_captaciones = '\n'.join(rebombeos_conexion_captacion)
 
     # Agregar cada elemento de la lista en una celda separada de la misma columna
     if len(tanques_list) == 0:
-        filas.append([Captaciones_conectados, list_rebombeo, list_pozo_cisterna, list_cisternas, list_tanques, zona])
-        # filas.append([zona, list_tanques, cisternas_str, pozos_str, rebombeos_str])
+        filas.append(
+            [list_rebombeos_captaciones, list_rebombeo, list_pozo_cisterna, list_cisternas, list_tanques, zona])
+
     else:
         for i, tanque in enumerate(tanques_conectados):
             if i == 0:
-                # La primera fila para una zona tendrá el nombre de la zona
-                # filas.append([zona, tanque, '', '', '', ''])
-                filas.append(['', list_rebombeo, list_pozo_cisterna, list_cisternas, tanque, zona])
+                filas.append(
+                    [list_rebombeos_captaciones, list_rebombeo, list_pozo_cisterna, list_cisternas, tanque, zona])
             else:
-                # Las filas siguientes para la misma zona solo tendrán el nombre del tanque
-                # filas.append([zona, tanque, '', '', '', ''])
-                filas.append(['', list_rebombeo, list_pozo_cisterna, list_cisternas, tanque, zona])
-    # tablaZonas = pd.DataFrame(filas, columns=['Zona', 'Tanque', 'Cisternas', 'Pozos', 'Rebombeos', 'Captaciones'])
+                filas.append(
+                    [list_rebombeos_captaciones, list_rebombeo, list_pozo_cisterna, list_cisternas, tanque, zona])
     tablaZonas = pd.DataFrame(filas, columns=['Captaciones', 'Rebombeos', 'Pozos', 'Cisternas', 'Tanque', 'Zona'])
     tablaZonas.to_excel('BalanceV.xlsx', index=False)
 

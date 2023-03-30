@@ -30,6 +30,7 @@ def find_connections(node_name, dest_node_name, visited_nodes):
 for node_name in wn.node_name_list:
     node = wn.get_node(node_name)
     if node.node_type == 'Reservoir':
+        print("fed", node.node_type)
         for link_name in wn.get_links_for_node(node_name):
             link = wn.get_link(link_name)
             if link.link_type in ['Pipe', 'Pump', 'Tank']:
@@ -39,6 +40,7 @@ for node_name in wn.node_name_list:
                     find_connections(other_node_name, node_name, [])
 
     elif node.node_type in ['Tank', 'Junction']:
+
         tanques_conectados = [n for n in wn.get_links_for_node(node_name) if wn.get_link(n).link_type == 'Tank']
         if len(tanques_conectados) == 1:
             tanque_name = wn.get_link(tanques_conectados[0]).start_node_name if wn.get_link(
