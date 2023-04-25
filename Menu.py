@@ -1,23 +1,15 @@
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QLabel, QHBoxLayout, QSpacerItem, QSizePolicy
+from PyQt5 import QtWidgets, uic
 from PyQt5.QtGui import QIcon, QPixmap, QFont
-from PyQt5.QtCore import Qt, QSize
 from calcular_poblacion.CalcularPoblacion import CalculaPoblacion
 
-class Menu(QWidget):
+
+class Menu(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
-        self.initUI()
+        uic.loadUi('menu_view.ui', self)
+        self.show()
+        self.setWindowTitle('GISSAT')
 
-
-    def initUI(self):
-
-        # Configurar el layout vertical
-        layout = QHBoxLayout()
-        layout.setContentsMargins(30, 30, 100, 130)
-        # Establecer la separación entre los elementos del layout
-
-        # Crear el botón calcular Poblacion
-        self.btnCalcular = QPushButton()
         self.btnCalcular.setIcon(QIcon(QPixmap("./resources/icon/calculadora.png")))
         self.btnCalcular.setIconSize(self.btnCalcular.size())
         self.btnCalcular.setStyleSheet("QPushButton {"
@@ -38,33 +30,18 @@ class Menu(QWidget):
                                   "    border: 2px solid #F2ED02;"
                                   "    box-shadow: none;"
                                   "}")
-        self.btnCalcular.setFixedSize(95, 110)
-        self.btnCalcular.clicked.connect(self.calcular)
 
-        # Configurar la etiqueta
-        labelCaulcular = QLabel('Calcular Población')
+        self.labelCalcular.setText('Calcular Población')
         font = QFont("Arial", 9)
         font.setWeight(QFont.Bold)
-        labelCaulcular.setFont(font)
+        self.labelCalcular.setFont(font)
+        self.btnCalcular.clicked.connect(self.calcular)
 
-        layoutVertical = QVBoxLayout()
-        layout.addItem(layoutVertical)
 
-        # Agregar espaciadores vertical alrededor del botón y la etiqueta
-        layoutVertical.addItem(QSpacerItem(10, 10, QSizePolicy.Minimum, QSizePolicy.Expanding))
-        layoutVertical.addWidget(self.btnCalcular)
-        layoutVertical.addItem(QSpacerItem(10, 10, QSizePolicy.Minimum, QSizePolicy.Expanding))
-        layoutVertical.addWidget(labelCaulcular)
-        layoutVertical.addItem(QSpacerItem(10, 10, QSizePolicy.Minimum, QSizePolicy.Expanding))
-
-        # Agregar un espaciador vertical para separar los botones
-        layout.addItem(QSpacerItem(10, 10, QSizePolicy.Minimum, QSizePolicy.Expanding))
-
-        # Crear el botón 2
-        self.button2 = QPushButton()
-        self.button2.setIcon(QIcon(QPixmap("./resources/icon/bug.png")))
-        self.button2.setIconSize(self.button2.size())
-        self.button2.setStyleSheet("QPushButton {"
+        #Boton Diagrama Unifilar
+        self.btnDiagrama.setIcon(QIcon(QPixmap("./resources/icon/diagrama.png")))
+        self.btnDiagrama.setIconSize(self.btnDiagrama.size())
+        self.btnDiagrama.setStyleSheet("QPushButton {"
                                   "    border-radius: 8px;"
                                   "    background-color: blue;"
                                   "    color: white;"
@@ -82,26 +59,44 @@ class Menu(QWidget):
                                   "    border: 2px solid #1E90FF;"
                                   "    box-shadow: none;"
                                   "}")
-        self.button2.setFixedSize(95, 110)
-        self.button2.clicked.connect(self.otro)
-        self.button2.setContentsMargins(30, 30, 100, 130)
-        layout.addWidget(self.button2)
 
-        # Agregar el layout vertical al widget principal
-        self.setLayout(layout)
-        self.setWindowTitle('GISSAT')
-        self.setFixedSize(400, 300)
-        self.show()
+        self.labelDiagrama.setText('Diagrama Unifilar')
+        font = QFont("Arial", 9)
+        font.setWeight(QFont.Bold)
+        self.labelDiagrama.setFont(font)
+
+        self.btnBalance.setIcon(QIcon(QPixmap("./resources/icon/Balanza.png")))
+        self.btnBalance.setIconSize(self.btnBalance.size())
+        self.btnBalance.setStyleSheet("QPushButton {"
+                                  "    border-radius: 8px;"
+                                  "    background-color: red;"
+                                  "    color: white;"
+                                  "    padding: 8px 16px;"
+                                  "    border: 2px solid #380600;"
+                                  "    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);"
+                                  "    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);"
+                                  "}"
+                                  "QPushButton:hover {"
+                                  "    background-color: #FF5D4A;"
+                                  "    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);"
+                                  "}"
+                                  "QPushButton:pressed {"
+                                  "    background-color: #A11201;"
+                                  "    border: 2px solid #380600;"
+                                  "    box-shadow: none;"
+                                  "}")
+        self.labelBalance.setText('Balance Volumetrico')
+        font = QFont("Arial", 9)
+        font.setWeight(QFont.Bold)
+        self.labelBalance.setFont(font)
 
     def calcular(self):
         self.calcular = CalculaPoblacion()
         self.calcular.show()
 
-    def otro(self):
-        print("otro")
 
 if __name__ == '__main__':
-    app = QApplication([])
-    window = Menu()
+    app = QtWidgets.QApplication([])
+    main_window = Menu()
+    main_window.show()
     app.exec_()
-

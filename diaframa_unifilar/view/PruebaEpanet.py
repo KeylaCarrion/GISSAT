@@ -2,7 +2,7 @@ import pandas as pd
 import wntr
 
 # Cargar el archivo INP
-inp_file = r'C:\Users\RI\Downloads\EPANET-dev\example-networks\N7.inp'
+inp_file = r'C:\Users\RI\Downloads\EPANET-dev\example-networks\N6.inp'
 wn = wntr.network.WaterNetworkModel(inp_file)
 
 # Obtener lista de nodos y lista de zonas

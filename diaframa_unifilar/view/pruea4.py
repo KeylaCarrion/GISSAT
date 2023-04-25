@@ -1,7 +1,7 @@
 import wntr
 
 # Crear modelo de red de agua
-inp_file = r'C:\Users\RI\Downloads\EPANET-dev\example-networks\N6.inp'
+inp_file = r'C:\Users\RI\Downloads\EPANET-dev\example-networks\N7.inp'
 wn = wntr.network.WaterNetworkModel(inp_file)
 
 

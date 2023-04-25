@@ -14,7 +14,7 @@ qgs.initQgis()
 sys.path.append(r'C:\OSGeo4W64\apps\qgis-ltr\python\plugins')
 
 
-class CalculaPoblacion(QtWidgets.QDialog):
+class CalculaPoblacion(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi('calcular_poblacion.ui', self)
