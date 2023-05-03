@@ -1,5 +1,6 @@
 import pandas as pd
 import wntr
+from rich import print
 
 # Cargar el archivo INP
 inp_file = r'C:\Users\RI\Downloads\EPANET-dev\example-networks\N7.inp'
@@ -84,6 +85,7 @@ for zona in listaZonas:
                 if wn.get_node(nodo_cisterna).tag == 'Cisterna':
                     tanques_cisternas_conectados.append(nodo_cisterna)
                     tuberias_Cisternas = wn.get_links_for_node(nodo_cisterna)
+
                     for tuberias_pozos_c in tuberias_Cisternas:
                         nodo_pozo_cisterna = wn.get_link(tuberias_pozos_c).start_node_name
 
@@ -91,15 +93,12 @@ for zona in listaZonas:
                             cisternas_pozos_conectados.append(nodo_pozo_cisterna)
 
                         if wn.get_node(nodo_pozo_cisterna).tag == 'Rebombeo1':
-
                             rebombeos_conectados_tanque1.append(nodo_pozo_cisterna)
 
                         if wn.get_node(nodo_pozo_cisterna).tag == 'Rebombeo2':
-
                             rebombeos_conectados_tanque2.append(nodo_pozo_cisterna)
 
                         if wn.get_node(nodo_pozo_cisterna).tag == 'Rebombeo3':
-                            print(nodo_pozo_cisterna)
                             rebombeos_conectados_tanque3.append(nodo_pozo_cisterna)
 
                 if wn.get_node(nodo_cisterna).tag == 'Pozo':
@@ -130,6 +129,19 @@ for zona in listaZonas:
                 if wn.get_node(t).tag == 'Rebombeo2':
 
                     cisternas_conectados_rebombeos2.append(t)
+                    tuberias_pozos_rebombeos2 = wn.get_links_for_node(t)
+
+                    for tpr2 in tuberias_pozos_rebombeos2:
+                        trp2 = wn.get_link(tpr2).start_node_name
+                        if wn.get_node(trp2).tag == 'Rebombeo1':
+                            cisternas_conectados_rebombeos1.append(trp2)
+
+                        if wn.get_node(trp2).tag == 'Rebombeo2':
+                            cisternas_conectados_rebombeos2.append(trp2)
+
+                        if wn.get_node(trp2).tag == 'Rebombeo3':
+                            rebombeos_conectados_rebombeos3.append(trp2)
+                            print(rebombeos_conectados_rebombeos3)
 
                 if wn.get_node(t).tag == 'Rebombeo3':
                     # Puede que no haya conexion de cisterna rebombeo pero si de rebombeo a rebombeo.
@@ -165,9 +177,9 @@ for zona in listaZonas:
 
     cisternas_rebombeos1 = cisternas_conectados_rebombeos1 + rebombeos_conectados + rebombeos_conectados_tanque1
     cisternas_rebombeos2 = cisternas_conectados_rebombeos2 + rebombeos_conectados_tanque2
-    cisternas_rebombeos3 = cisternas_conectados_rebombeos3 + rebombeos_conectados_tanque3
+    cisternas_rebombeos3 = cisternas_conectados_rebombeos3 + rebombeos_conectados_tanque3 + rebombeos_conectados_rebombeos3
 
-    print(rebombeos_conectados)
+
     tanques_list = []
     for tanque in tanques_conectados:
         tanques_list.append(tanque)
@@ -198,17 +210,14 @@ for zona in listaZonas:
 
     rebombeos_list1 = []
     for rebombeos1 in cisternas_rebombeos1:
-        # print(cisternas_rebombeos)
         rebombeos_list1.append(rebombeos1)
 
     rebombeos_list2 = []
     for rebombeos2 in cisternas_rebombeos2:
-        # print(cisternas_rebombeos)
         rebombeos_list2.append(rebombeos2)
 
     rebombeos_list3 = []
     for rebombeos3 in cisternas_rebombeos3:
-        # print(cisternas_rebombeos)
         rebombeos_list3.append(rebombeos3)
 
     list_pozo_cisterna = '\n'.join(cisternas_pozos_list)
@@ -222,6 +231,8 @@ for zona in listaZonas:
 
     list_rebombeos_captaciones = '\n'.join(rebombeos_conexion_captacion)
 
+    print(cisternas_rebombeos2)
+
     # Agregar cada elemento de la lista en una celda separada de la misma columna
     if len(tanques_list) == 0:
         filas.append(
@@ -231,34 +242,34 @@ for zona in listaZonas:
         for i, tanque in enumerate(tanques_conectados):
             if i == 0:
                 filas.append(
-                    ['', '', '', '', '', '', tanque, zona])
+                    ['', '', '', '', '', '', '', ''])
             else:
                 filas.append(
-                    ['', '', '', '', '', '', tanque, zona])
+                    ['', '', '', '', '', '', '', ''])
 
         for j, cisterna in enumerate(tanques_por_cisterna):
             if j == 0:
                 filas.append(
-                    ['', '', '', '', '', cisterna, '', ''])
+                    ['', '', '', '', '', '', '', ''])
             else:
                 filas.append(
-                    ['', '', '', '', '', cisterna, '', ''])
+                    ['', '', '', '', '', '', '', ''])
 
         for k, pozo in enumerate(pozos_all):
             if k == 0:
                 filas.append(
-                    ['', '', '', '', pozo, '', '', ''])
+                    ['', '', '', '', pozo, cisterna, tanque, zona])
             else:
                 filas.append(
-                    ['', '', '', '', pozo, '', '', ''])
+                    ['', '', '', '', pozo, cisterna, tanque, zona])
 
-        for i, rebombeo1 in enumerate(cisternas_rebombeos1):
-            if i == 0:
+        for m, rebombeo1 in enumerate(cisternas_rebombeos1):
+            if m == 0:
                 filas.append(
                     ['', '', '', rebombeo1, '', '', '', ''])
             else:
                 filas.append(
-                    ['', '', '', rebombeo1, '', '', '', ''])
+                    ['', '', '', rebombeo1, '', '', '', '', ''])
 
         for h, rebombeo2 in enumerate(cisternas_rebombeos2):
             if h == 0:
@@ -277,7 +288,8 @@ for zona in listaZonas:
                     ['', rebombeo3, '', '', '', '', '', ''])
 
     tablaZonas = pd.DataFrame(filas,
-                              columns=['Captaciones', 'Rebombeos 1 ', 'Rebombeos 2', 'Rebombeos 3', 'Pozos', 'Cisternas',
+                              columns=['Captaciones', 'Rebombeos 3 ', 'Rebombeos 2', 'Rebombeos 1', 'Pozos',
+                                       'Cisternas',
                                        'Tanque', 'Zona'])
     tablaZonas.to_excel('BalanceV.xlsx', index=False)
 
