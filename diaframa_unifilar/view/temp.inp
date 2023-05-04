@@ -1,6 +1,6 @@
 ; Filename: C:\Users\RI\Downloads\EPANET-dev\example-networks\N6.inp
 ; WNTR: 0.5.0
-; Created: 2023-03-10 11:42:28
+; Created: 2023-05-04 17:28:00
 [TITLE]
 
 [JUNCTIONS]
@@ -55,6 +55,7 @@
  6                                  0               0                            ;
  7                                  0               0                            ;
  3                                  0          1766.3                            ;
+ 8                                  0               0                            ;
 
 [RESERVOIRS]
 ;ID                                   Head                  Pattern
@@ -98,7 +99,7 @@
  TanqueElevadoBugambilias3              10              20               0              20              50               0                                             ;
  CisternaHalcones                   0              10               0              20              50               0                                             ;
  RebombeoNuevoMexico                0              10               0              20              50               0                                             ;
- CisertaPuertaSur                   0              10               0              20              50               0                                             ;
+ CisternaPuertaSur                  0              10               0              20              50               0                                             ;
  TanqueElevadoPuertaSur               0              10               0              20              50               0                                             ;
  CisternaMexicoItavu                0              10               0              20              50               0                                             ;
  TanqueElevadoMexicoItavu               0              10               0              20              50               0                                             ;
@@ -147,7 +148,7 @@
  42                   36                   CisternaLomaBonita              1000             100           1e-09               0                 Open   ;
  44                   TanqueElevadoLomaBonita LomaBonita                      1000             100           1e-09               0                 Open   ;
  45                   35                   CisternaVentura                 1000             100           1e-09               0                 Open   ;
- 47                   Ventura              CisternaColinasDeLomaReal            1000              50           1e-09               0                 Open   ;
+ 47                   8                    CisternaColinasDeLomaReal            1000             100           1e-09               0                 Open   ;
  49                   TanqueElevadoColinasDeLomaReal ColinasDeLomaReal               1000             100           1e-09               0                 Open   ;
  50                   ColinasDeLomaReal    LomaReal                        1000              50           1e-09               0                 Open   ;
  51                   6                    37                              1000             100           1e-09               0                 Open   ;
@@ -160,7 +161,6 @@
  61                   TanqueElevadoBugambilias1 Bugambilias                     1000             100           1e-09               0                 Open   ;
  62                   43                   CisternaBugambilias2            1000             100           1e-09               0                 Open   ;
  64                   44                   CisternaBugambilias3            1000             100           1e-09               0                 Open   ;
- 66                   Bugambilias          TanqueElevadoBugambilias3            1000             100           1e-09               0                 Open   ;
  67                   TanqueElevadoBugambilias2 Bugambilias                     1000             100           1e-09               0                 Open   ;
  69                   37                   45                              1000             100           1e-09               0                 Open   ;
  70                   45                   CisternaHalcones                1000             100           1e-09               0                 Open   ;
@@ -170,7 +170,7 @@
  77                   46                   NuevoMexico                     1000             100           1e-09               0                 Open   ;
  78                   46                   47                              1000             100           1e-09               0                 Open   ;
  81                   TanqueElevadoPuertaSur PuertaSur                       1000             100           1e-09               0                 Open   ;
- 82                   47                   CisertaPuertaSur                1000             100           1e-09               0                 Open   ;
+ 82                   47                   CisternaPuertaSur               1000             100           1e-09               0                 Open   ;
  83                   47                   CisternaMexicoItavu             1000             100           1e-09               0                 Open   ;
  85                   TanqueElevadoMexicoItavu MexicoItavu                     1000             100           1e-09               0                 Open   ;
  86                   46                   RebombeoAmpSanValentin            1000             100           1e-09               0                 Open   ;
@@ -187,6 +187,8 @@
  103                  50                   CistermaVistaAlta               1000             100           1e-09               0                 Open   ;
  5                    3                    RebombeoPastorLozano3            1000             100           1e-09               0                 Open   ;
  8                    3                    RebombeoPastorLozano4            1000             100           1e-09               0                 Open   ;
+ 9                    8                    Ventura                         1000              12             100               0                 Open   ;
+ 12                   TanqueElevadoBugambilias3 Bugambilias                     1000              12             100               0                 Open   ;
 
 [PUMPS]
 ;ID                   Node1                Node2                Properties          
@@ -197,7 +199,7 @@
  PozoFresnos          PozoFresnos          CisternaFresnos      HEAD     PozoFresnos            ;
  39                   CisternaFresnos      Fresnos              HEAD     1                      ;
  43                   CisternaLomaBonita   TanqueElevadoLomaBonita HEAD     1                      ;
- 46                   CisternaVentura      Ventura              HEAD     1                      ;
+ 46                   CisternaVentura      8                    HEAD     1                      ;
  48                   CisternaColinasDeLomaReal TanqueElevadoColinasDeLomaReal HEAD     1                      ;
  53                   CisternaBugambilias1 TanqueElevadoBugambilias1 HEAD     1                      ;
  63                   CisternaBugambilias2 TanqueElevadoBugambilias2 HEAD     1                      ;
@@ -205,8 +207,8 @@
  71                   CisternaHalcones     Halcones             HEAD     1                      ;
  PozoNuevoMexico1     PozoNuevoMexico1     RebombeoNuevoMexico  HEAD     PozoNuevoMexico1       ;
  PozoNuevoMexico2     PozoNuevoMexico2     RebombeoNuevoMexico  HEAD     PozoNuevoMexico2       ;
- PozoPuertaSur        PozoPuertaSur        CisertaPuertaSur     HEAD     PozoPuertaSur          ;
- 80                   CisertaPuertaSur     TanqueElevadoPuertaSur HEAD     1                      ;
+ PozoPuertaSur        PozoPuertaSur        CisternaPuertaSur    HEAD     PozoPuertaSur          ;
+ 80                   CisternaPuertaSur    TanqueElevadoPuertaSur HEAD     1                      ;
  84                   CisternaMexicoItavu  TanqueElevadoMexicoItavu HEAD     1                      ;
  PozoAmpSanValentin   PozoAmpSanValentin   RebombeoAmpSanValentin HEAD     PozoAmpSanValentin     ;
  88                   RebombeoAmpSanValentin AmpSanValentin       HEAD     1                      ;
@@ -231,27 +233,53 @@
 
 [TAGS]
 ;type      name       tag       
+NODE       24         Conexion  
+NODE       25         Conexion  
+NODE       26         Interconexion
+NODE       30         Conexion  
+NODE       31         Conexion  
 NODE       VistaHermosa Zona      
 NODE       VillaFlorida Zona      
+NODE       32         Conexion  
 NODE       VillasDelRoble Zona      
 NODE       GranjasNorte Zona      
+NODE       33         Conexion  
+NODE       34         Conexion  
 NODE       LomaReal   Zona      
 NODE       Fresnos    Zona      
+NODE       35         Conexion  
+NODE       36         Conexion  
 NODE       LomaBonita Zona      
 NODE       Ventura    Zona      
 NODE       ColinasDeLomaReal Zona      
+NODE       37         Conexion  
 NODE       Halcones   Zona      
 NODE       Arcos      Zona      
+NODE       40         Conexion  
 NODE       JarachinaSur Zona      
+NODE       42         Conexion  
+NODE       43         Conexion  
+NODE       44         Conexion  
 NODE       Bugambilias Zona      
+NODE       45         Conexion  
+NODE       46         Conexion  
 NODE       NuevoMexico Zona      
+NODE       47         Conexion  
 NODE       PuertaSur  Zona      
 NODE       MexicoItavu Zona      
 NODE       AmpSanValentin Zona      
+NODE       48         Conexion  
 NODE       SanValentin Zona      
+NODE       49         Conexion  
 NODE       PuertaDelSol Zona      
+NODE       50         Conexion  
 NODE       VistaAlta  Zona      
 NODE       HcdDelSol  Zona      
+NODE       1          Conexion  
+NODE       2          Conexion  
+NODE       7          Conexion  
+NODE       3          Conexion  
+NODE       8          Conexion  
 NODE       PozoVillasDelRoble Pozo      
 NODE       PozoFresnos Pozo      
 NODE       PozoNuevoMexico1 Pozo      
@@ -289,11 +317,11 @@ NODE       CisternaBugambilias3 Cisterna
 NODE       TanqueElevadoBugambilias3 TanqueElevado
 NODE       CisternaHalcones Cisterna  
 NODE       RebombeoNuevoMexico Rebombeo  
-NODE       CisertaPuertaSur Cisterna  
+NODE       CisternaPuertaSur Cisterna  
 NODE       TanqueElevadoPuertaSur TanqueElevado
 NODE       CisternaMexicoItavu Cisterna  
 NODE       TanqueElevadoMexicoItavu TanqueElevado
-NODE       RebombeoAmpSanValentin Rebombeo  
+NODE       RebombeoAmpSanValentin Cisterna  
 NODE       CisternaSanValentin Cisterna  
 NODE       CisternaPuertaDelSol2 Cisterna  
 NODE       CisternaPuertaDelSol1 Cisterna  
@@ -308,13 +336,14 @@ LINK       107        Rebombeo
 LINK       108        Rebombeo  
 LINK       11         Cisterna  
 LINK       13         Cisterna  
+LINK       15         Conexion  
 LINK       24         Interconexion
+LINK       26         Conexion  
 LINK       31         Interconexion
 LINK       32         Interconexion
 LINK       39         Cisterna  
 LINK       43         Cisterna  
 LINK       46         Cisterna  
-LINK       47         Interconexion
 LINK       48         Cisterna  
 LINK       50         Interconexion
 LINK       53         Cisterna  
@@ -325,7 +354,7 @@ LINK       65         Cisterna
 LINK       68         Rebombeo  
 LINK       71         Cisterna  
 LINK       72         Interconexion
-LINK       80         Cisterna  
+LINK       82         Conexion  
 LINK       84         Cisterna  
 LINK       88         Rebombeo  
 LINK       97         Cisterna  
@@ -477,7 +506,7 @@ Fresnos        -18457.447000000      11893.617000000
 35             -13968.085000000       7595.745000000
 36             -11074.468000000       7595.745000000
 LomaBonita     -11053.191000000      12297.872000000
-Ventura        -13976.211000000      12865.618000000
+Ventura        -14097.820000000      13045.181000000
 ColinasDeLomaReal     -16274.083000000      15227.320000000
 37              -8760.781000000       6303.415000000
 Halcones       -13645.267000000       1468.988000000
@@ -509,6 +538,7 @@ HcdDelSol        2983.441000000     -17867.517000000
 6               -8760.781000000       7877.461000000
 7                 429.236000000       5619.948000000
 3               11672.334000000       4861.691000000
+8              -13102.863000000      13054.479000000
 PozoVillasDelRoble      -7308.511000000      16148.936000000
 PozoFresnos     -20223.404000000      10106.383000000
 PozoNuevoMexico1     -15609.743000000      -9784.053000000
@@ -546,7 +576,7 @@ CisternaBugambilias3     -21741.023000000      -6430.903000000
 TanqueElevadoBugambilias3     -21773.667000000      -8161.045000000
 CisternaHalcones     -13645.267000000       -391.730000000
 RebombeoNuevoMexico     -13879.601000000     -10371.649000000
-CisertaPuertaSur      -9048.263000000     -20132.258000000
+CisternaPuertaSur      -9048.263000000     -20132.258000000
 TanqueElevadoPuertaSur      -9080.907000000     -21764.467000000
 CisternaMexicoItavu     -20343.149000000     -20132.258000000
 TanqueElevadoMexicoItavu     -21975.358000000     -18630.626000000
@@ -581,7 +611,6 @@ CisternaHcdDelSol       2935.161000000     -13763.715000000
 52             -12686.170000000       5604.934000000
 54             -31703.323000000       6309.526000000
 61             -18346.028000000       1893.362000000
-66             -18346.028000000      -8161.045000000
 67             -19749.728000000      -3035.909000000
 67             -19749.728000000      -1273.123000000
 72             -12688.142000000       1470.373000000
@@ -589,6 +618,7 @@ CisternaHcdDelSol       2935.161000000     -13763.715000000
 93                425.313000000       4641.775000000
 93                -33.193000000       4641.775000000
 94              -1833.900000000      -2700.267000000
+12             -18341.207000000      -8158.608000000
 
 [LABELS]
  12988.201         	7398.282          	"RebombeoPastorLozano3"	RebombeoPastorLozano3

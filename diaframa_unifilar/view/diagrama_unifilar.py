@@ -28,6 +28,10 @@ class diagramaUnifilar(QMainWindow):
         self.btn_project_new.setIcon(QIcon("../resources/icon/i_load.png"))
         self.btn_project_new.setText("Conexiones")
 
+
+
+
+
     def project_load_clicked(self):
         self.btn_project_load.setChecked(False)
 

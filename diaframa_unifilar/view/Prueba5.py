@@ -1,6 +1,5 @@
 import pandas as pd
 import wntr
-from rich import print
 
 # Cargar el archivo INP
 inp_file = r'C:\Users\RI\Downloads\EPANET-dev\example-networks\N7.inp'
@@ -72,6 +71,7 @@ for zona in listaZonas:
     rebombeos_pozos_conectados1 = []
     rebombeos_pozos_conectados2 = []
     rebombeos_pozos_conectados3 = []
+    rebombeos_conectados_captaciones = []
 
     for tuberia in tuberias:
         nodo_Tanque = wn.get_link(tuberia).start_node_name
@@ -137,14 +137,20 @@ for zona in listaZonas:
                     for tpr2 in tuberias_pozos_rebombeos2:
                         trp2 = wn.get_link(tpr2).start_node_name
                         if wn.get_node(trp2).tag == 'Rebombeo1':
-                            cisternas_conectados_rebombeos1.append(trp2)
-
+                            print()
                         if wn.get_node(trp2).tag == 'Rebombeo2':
-                            cisternas_conectados_rebombeos2.append(trp2)
+                            rebombeos_conectados_rebombeos2.append(trp2)
 
                         if wn.get_node(trp2).tag == 'Rebombeo3':
                             rebombeos_conectados_rebombeos3.append(trp2)
-                            print(rebombeos_conectados_rebombeos3)
+
+                            tuberias_rebombeos_captaciones = wn.get_links_for_node(trp2)
+
+                            for tpr3 in tuberias_rebombeos_captaciones:
+                                trp3 = wn.get_link(tpr3).start_node_name
+
+                                if wn.get_node(trp3).tag == 'Captacion':
+                                    rebombeos_conectados_captaciones.append(trp3)
 
                 if wn.get_node(t).tag == 'Rebombeo3':
                     # Puede que no haya conexion de cisterna rebombeo pero si de rebombeo a rebombeo.
@@ -189,7 +195,7 @@ for zona in listaZonas:
     pozos_all = cisternas_por_pozos + rebombeos_por_pozos + pozos_conectados + zona_rebombeos_pozos
 
     cisternas_rebombeos1 = cisternas_conectados_rebombeos1 + rebombeos_conectados + rebombeos_conectados_tanque1
-    cisternas_rebombeos2 = cisternas_conectados_rebombeos2 + rebombeos_conectados_tanque2
+    cisternas_rebombeos2 = cisternas_conectados_rebombeos2 + rebombeos_conectados_tanque2 + rebombeos_conectados_rebombeos2
     cisternas_rebombeos3 = cisternas_conectados_rebombeos3 + rebombeos_conectados_tanque3 + rebombeos_conectados_rebombeos3
 
     tanques_list = []
@@ -238,12 +244,10 @@ for zona in listaZonas:
     list_rebombeo3 = '\n'.join(rebombeos_list3)
 
     rebombeos_conexion_captacion = []
-    for con_capta in conexion_rebombeo_captacion:
+    for con_capta in rebombeos_conectados_captaciones:
         rebombeos_conexion_captacion.append(con_capta)
 
     list_rebombeos_captaciones = '\n'.join(rebombeos_conexion_captacion)
-
-    print(cisternas_rebombeos2)
 
     # Agregar cada elemento de la lista en una celda separada de la misma columna
     if len(tanques_list) == 0:
@@ -258,7 +262,6 @@ for zona in listaZonas:
             else:
                 filas.append(
                     ['', '', '', '', '', '', '', ''])
-
         for j, cisterna in enumerate(tanques_por_cisterna):
             if j == 0:
                 filas.append(
@@ -266,7 +269,6 @@ for zona in listaZonas:
             else:
                 filas.append(
                     ['', '', '', '', '', '', '', ''])
-
         for k, pozo in enumerate(pozos_all):
             if k == 0:
                 filas.append(
@@ -274,7 +276,6 @@ for zona in listaZonas:
             else:
                 filas.append(
                     ['', '', '', '', pozo, cisterna, tanque, zona])
-
         for m, rebombeo1 in enumerate(cisternas_rebombeos1):
             if m == 0:
                 filas.append(
@@ -282,7 +283,6 @@ for zona in listaZonas:
             else:
                 filas.append(
                     ['', '', '', rebombeo1, '', '', '', '', ''])
-
         for h, rebombeo2 in enumerate(cisternas_rebombeos2):
             if h == 0:
                 filas.append(
@@ -298,6 +298,13 @@ for zona in listaZonas:
             else:
                 filas.append(
                     ['', rebombeo3, '', '', '', '', '', ''])
+        for p, captaciones in enumerate(rebombeos_conectados_captaciones):
+            if p == 0:
+                filas.append(
+                    [captaciones, '', '', '', '', '', '', ''])
+            else:
+                filas.append(
+                    [captaciones, '', '', '', '', '', '', ''])
 
     tablaZonas = pd.DataFrame(filas,
                               columns=['Captaciones', 'Rebombeos 3 ', 'Rebombeos 2', 'Rebombeos 1', 'Pozos',
