@@ -126,6 +126,9 @@ for zona in listaZonas:
                 if wn.get_node(t).tag == 'Rebombeo1':
                     cisternas_conectados_rebombeos1.append(t)
 
+                    # Iterar para haber si hay conexión entre rebombeo1 a rebombeo2
+                    # O si hay conexión entre rebombeo1 a rebombeo3
+
                 if wn.get_node(t).tag == 'Rebombeo2':
 
                     cisternas_conectados_rebombeos2.append(t)
@@ -147,6 +150,11 @@ for zona in listaZonas:
                     # Puede que no haya conexion de cisterna rebombeo pero si de rebombeo a rebombeo.
                     cisternas_conectados_rebombeos3.append(t)
 
+                    # Iterar si hay conexion entre Rebombeo3 a Captaciones
+                    # Para sacar todas las conexiones de Rebombeo3 a Captaiones
+                    # checar como se guardan las conexiones en cada lista porque se puede
+                    # repetir y no ser las correctas o se puedem estar metiendo de mas
+
         if wn.get_node(nodo_Tanque).tag == 'Pozo':
             pozos_conectados.append(nodo_Tanque)
             tuberias_pozos_rebombeos = wn.get_links_for_node(nodo_Tanque)
@@ -157,6 +165,11 @@ for zona in listaZonas:
 
                 if wn.get_node(trp).tag == 'Rebombeo1':
                     rebombeos_pozos_conectados.append(trp)
+
+                    # Ver si hay conexiones tambien aqui de rebombeo1 a rebombeo2
+                    # Rebombeo 2 a rebombeo3
+                    # rebombeo3 a captacion
+                    # o rebombeo1 a rebombeo3
 
         if wn.get_node(nodo_Tanque).tag == 'Rebombeo1':
 
@@ -178,7 +191,6 @@ for zona in listaZonas:
     cisternas_rebombeos1 = cisternas_conectados_rebombeos1 + rebombeos_conectados + rebombeos_conectados_tanque1
     cisternas_rebombeos2 = cisternas_conectados_rebombeos2 + rebombeos_conectados_tanque2
     cisternas_rebombeos3 = cisternas_conectados_rebombeos3 + rebombeos_conectados_tanque3 + rebombeos_conectados_rebombeos3
-
 
     tanques_list = []
     for tanque in tanques_conectados:
