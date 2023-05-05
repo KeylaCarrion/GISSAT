@@ -72,6 +72,10 @@ for zona in listaZonas:
     rebombeos_pozos_conectados2 = []
     rebombeos_pozos_conectados3 = []
     rebombeos_conectados_captaciones = []
+    rebombeo_conectado_tcrem1 = []
+    rebombeo_conectado_tcrem3 = []
+    rebombeo_pozo_rebombeos_rebombeos = []
+    rebombeo_zona_rebombeo = []
 
     for tuberia in tuberias:
         nodo_Tanque = wn.get_link(tuberia).start_node_name
@@ -94,6 +98,16 @@ for zona in listaZonas:
 
                         if wn.get_node(nodo_pozo_cisterna).tag == 'Rebombeo1':
                             rebombeos_conectados_tanque1.append(nodo_pozo_cisterna)
+                            # De rebombeo 1 conexion a rebombeo 2
+                            tuberias_rebombeos_rebombeos = wn.get_links_for_node(nodo_pozo_cisterna)
+                            for tuberiasrebombeos in tuberias_rebombeos_rebombeos:
+                                nodo_rebombeo = wn.get_link(tuberiasrebombeos).start_node_name
+
+                                if wn.get_node(nodo_rebombeo).tag == 'Rebombeo2':
+                                    rebombeo_conectado_tcrem1.append(nodo_rebombeo)
+
+                                if wn.get_node(nodo_rebombeo).tag == 'Rebombeo3':
+                                    rebombeo_conectado_tcrem3.append(nodo_rebombeo)
 
                         if wn.get_node(nodo_pozo_cisterna).tag == 'Rebombeo2':
                             rebombeos_conectados_tanque2.append(nodo_pozo_cisterna)
@@ -125,7 +139,7 @@ for zona in listaZonas:
 
                 if wn.get_node(t).tag == 'Rebombeo1':
                     cisternas_conectados_rebombeos1.append(t)
-
+                    print()
                     # Iterar para haber si hay conexión entre rebombeo1 a rebombeo2
                     # O si hay conexión entre rebombeo1 a rebombeo3
 
@@ -137,10 +151,13 @@ for zona in listaZonas:
                     for tpr2 in tuberias_pozos_rebombeos2:
                         trp2 = wn.get_link(tpr2).start_node_name
                         if wn.get_node(trp2).tag == 'Rebombeo1':
-                            print()
-                        if wn.get_node(trp2).tag == 'Rebombeo2':
-                            rebombeos_conectados_rebombeos2.append(trp2)
+                            rebombeos_conectados_rebombeos1.append(trp2)
 
+                        # if wn.get_node(trp2).tag == 'Rebombeo2':
+                        # rebombeos_conectados_rebombeos2.append(trp2)
+                        # print("Lista de Rebombeo2 a Rebombeo2", cisternas_conectados_rebombeos2)
+                        # Se supone que no debe aver conexion de rebombeo a rebombeo a 2 poruqe chocarian al momento de meterlos en la misma columna
+                        # y comportan mismas conexiones con tsnques y cisterna
                         if wn.get_node(trp2).tag == 'Rebombeo3':
                             rebombeos_conectados_rebombeos3.append(trp2)
 
@@ -171,11 +188,19 @@ for zona in listaZonas:
 
                 if wn.get_node(trp).tag == 'Rebombeo1':
                     rebombeos_pozos_conectados.append(trp)
-
+                    print(trp)
                     # Ver si hay conexiones tambien aqui de rebombeo1 a rebombeo2
                     # Rebombeo 2 a rebombeo3
                     # rebombeo3 a captacion
                     # o rebombeo1 a rebombeo3
+
+                if wn.get_node(trp).tag == 'Rebombeo2':
+                    rebombeos_pozos_conectados.append(trp)
+                    print(trp)
+
+                if wn.get_node(trp).tag == 'Rebombeo3':
+                    rebombeos_pozos_conectados.append(trp)
+                    print(trp)
 
         if wn.get_node(nodo_Tanque).tag == 'Rebombeo1':
 
@@ -186,6 +211,26 @@ for zona in listaZonas:
                 tub = wn.get_link(tu).start_node_name
                 if wn.get_node(tub).tag == 'Pozo':
                     rebombeos_pozos_conectados.append(tub)
+                if wn.get_node(tub).tag == 'Rebombeo2':
+                    rebombeos_pozos_conectados2.append(tub)
+                    tuberias_rebombeos_pozos_rebombeos = wn.get_links_for_node(tub)
+                    for trpr in tuberias_rebombeos_pozos_rebombeos:
+                        tpr = wn.get_link(trpr).start_node_name
+                        if wn.get_node(tpr).tag == 'Rebombeo3':
+                            print(tpr)
+                if wn.get_node(tub).tag == 'Rebombeo3':
+                    rebombeo_pozo_rebombeos_rebombeos.append(tub)
+
+        if wn.get_node(nodo_Tanque).tag == 'Rebombeo2':
+            rebombeo_zona_rebombeo.append(nodo_Tanque)
+            tuberias_zona_pr = wn.get_links_for_node(nodo_Tanque)
+            for tzpr in tuberias_zona_pr:
+                tprz = wn.get_link(tzpr).start_node_name
+                if wn.get_node(tprz).tag == 'Rebomeo3':
+                    print(tprz)
+
+
+
 
     tanques_por_cisterna = cisternas_conectados + tanques_cisternas_conectados
     tanques_por_pozos = pozos_conectados + tanques_pozos_conectados
@@ -195,8 +240,9 @@ for zona in listaZonas:
     pozos_all = cisternas_por_pozos + rebombeos_por_pozos + pozos_conectados + zona_rebombeos_pozos
 
     cisternas_rebombeos1 = cisternas_conectados_rebombeos1 + rebombeos_conectados + rebombeos_conectados_tanque1
-    cisternas_rebombeos2 = cisternas_conectados_rebombeos2 + rebombeos_conectados_tanque2 + rebombeos_conectados_rebombeos2
-    cisternas_rebombeos3 = cisternas_conectados_rebombeos3 + rebombeos_conectados_tanque3 + rebombeos_conectados_rebombeos3
+    cisternas_rebombeos2 = cisternas_conectados_rebombeos2 + rebombeos_conectados_tanque2 + rebombeos_conectados_rebombeos2 + rebombeos_pozos_conectados2 + rebombeo_conectado_tcrem1 + rebombeo_zona_rebombeo
+    cisternas_rebombeos3 = cisternas_conectados_rebombeos3 + rebombeos_conectados_tanque3 + rebombeos_conectados_rebombeos3 + rebombeo_conectado_tcrem3 + rebombeo_pozo_rebombeos_rebombeos
+
 
     tanques_list = []
     for tanque in tanques_conectados:
@@ -231,11 +277,12 @@ for zona in listaZonas:
         rebombeos_list1.append(rebombeos1)
 
     rebombeos_list2 = []
-    for rebombeos2 in cisternas_rebombeos2:
-        rebombeos_list2.append(rebombeos2)
+    for rebombeosR2 in cisternas_rebombeos2:
+        rebombeos_list2.append(rebombeosR2)
 
     rebombeos_list3 = []
     for rebombeos3 in cisternas_rebombeos3:
+
         rebombeos_list3.append(rebombeos3)
 
     list_pozo_cisterna = '\n'.join(cisternas_pozos_list)
@@ -272,24 +319,26 @@ for zona in listaZonas:
         for k, pozo in enumerate(pozos_all):
             if k == 0:
                 filas.append(
-                    ['', '', '', '', pozo, cisterna, tanque, zona])
+                    ['', '', '', '', '', '', '', ''])
             else:
                 filas.append(
-                    ['', '', '', '', pozo, cisterna, tanque, zona])
+                    ['', '', '', '', '', '', '', ''])
         for m, rebombeo1 in enumerate(cisternas_rebombeos1):
             if m == 0:
                 filas.append(
-                    ['', '', '', rebombeo1, '', '', '', ''])
+                    ['', '', '', '', '', '', '', ''])
             else:
                 filas.append(
-                    ['', '', '', rebombeo1, '', '', '', '', ''])
+                    ['', '', '', '', '', '', '', ''])
         for h, rebombeo2 in enumerate(cisternas_rebombeos2):
             if h == 0:
+
                 filas.append(
-                    ['', '', rebombeo2, '', '', '', '', ''])
+                    ['', '', '', '', '', '', '', ''])
             else:
+
                 filas.append(
-                    ['', '', rebombeo2, '', '', '', '', ''])
+                    ['', '', '', '', '', '', '', ''])
 
         for f, rebombeo3 in enumerate(cisternas_rebombeos3):
             if f == 0:
@@ -298,13 +347,16 @@ for zona in listaZonas:
             else:
                 filas.append(
                     ['', rebombeo3, '', '', '', '', '', ''])
+
         for p, captaciones in enumerate(rebombeos_conectados_captaciones):
             if p == 0:
+
                 filas.append(
-                    [captaciones, '', '', '', '', '', '', ''])
+                    [captaciones,'', rebombeo2, rebombeo1, pozo, cisterna, tanque, zona])
             else:
+
                 filas.append(
-                    [captaciones, '', '', '', '', '', '', ''])
+                    [captaciones,'', rebombeo2, rebombeo1, pozo, cisterna, tanque, zona])
 
     tablaZonas = pd.DataFrame(filas,
                               columns=['Captaciones', 'Rebombeos 3 ', 'Rebombeos 2', 'Rebombeos 1', 'Pozos',
@@ -334,7 +386,8 @@ import sys
 
 # Cargar los datos del archivo Excel en un DataFrame de pandas
 df = pd.read_excel('BalanceV.xlsx')
-
+# Borra all
+# df = df.dropna()
 # Crear la aplicación PyQt5
 app = QApplication(sys.argv)
 
